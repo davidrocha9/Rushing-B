@@ -6,7 +6,6 @@ public class Jetpack : MonoBehaviour
 {
     public int speed, jumpforce;
     Rigidbody2D rb;
-    public Sprite flying, running;
     Animator animator;
 
     // Start is called before the first frame update
@@ -24,14 +23,11 @@ public class Jetpack : MonoBehaviour
         if (Input.GetKey("up"))
         {
             rb.AddForce(Vector2.up*jumpforce);
+            animator.SetBool("Falling", false);
             //transform.position = new Vector2(0, Mathf.Clamp(transform.position.x, -2f, 2f));
         }
-        if (transform.position.y == -5.512523)
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = running;
-        }
         else {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = flying;
+            animator.SetBool("Falling", true);
         }
     }
 }
