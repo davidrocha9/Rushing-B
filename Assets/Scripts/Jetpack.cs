@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Jetpack : MonoBehaviour
 {
-    public int speed, jumpforce;
+    public int jumpforce;
     Rigidbody2D rb;
     Animator animator;
 

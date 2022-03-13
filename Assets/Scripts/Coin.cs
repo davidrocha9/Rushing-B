@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public float speed = 10.0f;
+    public int value = 1;
+    public float speed = 60.0f;
     private Rigidbody2D rb;
     private Vector2 screenBounds;
     
@@ -12,15 +13,22 @@ public class Coin : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(-speed, 0);
+        rb.velocity = new Vector2(-5, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(transform.position.x);
         if(transform.position.x < -9.039994){
             Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            ScoreController.instance.ChangeScore(value);
         }
     }
 }
