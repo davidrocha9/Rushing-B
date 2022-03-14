@@ -5,6 +5,7 @@ using UnityEngine;
 public class deploy : MonoBehaviour
 {
     public GameObject coinPrefab;
+    public GameObject trashCanPrefab;
     private Vector2 screenBounds;
 
     // Use this for initialization
@@ -12,13 +13,32 @@ public class deploy : MonoBehaviour
         StartCoroutine(wave());
     }
 
+    public double GetRandomNumber(double minimum, double maximum)
+    { 
+        System.Random random = new System.Random();
+        return random.NextDouble() * (maximum - minimum) + minimum;
+    }
+
     private void spawn(){
-        System.Random rnd = new System.Random();
-        int y  = rnd.Next(-1, 4);
+        float y = (float) GetRandomNumber(-1, 4);
+        //int y  = rnd.NextDouble(-1.0f, 4.0f);
+
+        //spawnCoins(y);
+        spawnTrashCans(y);
+    }
+
+    private void spawnCoins(int y)
+    {
         //feupPattern(y);
         //ddjdPattern(y);
         //dnaPattern(y);
-        arrowPattern(y);
+        //arrowPattern(y);
+    }
+
+    private void spawnTrashCans(float y)
+    {
+        GameObject trashCan = Instantiate(trashCanPrefab) as GameObject;
+        trashCan.transform.position = new Vector2(10, y);
     }
 
     private void feupPattern(int y)
@@ -224,7 +244,7 @@ public class deploy : MonoBehaviour
     IEnumerator wave(){
         spawn();
         while(true){
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(2);
             spawn();
         }
     }
