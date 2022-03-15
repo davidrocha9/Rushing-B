@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 115920959}
   - component: {fileID: 115920958}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Meters Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -987,6 +987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 8162473127120852983, guid: f409cc0b3a006154096c946283cbbf58, type: 3}
+  trashCanPrefab: {fileID: 6383027357700675775, guid: b23c038f27a5e7547940f26d99c17016, type: 3}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1057,7 +1058,7 @@ GameObject:
   - component: {fileID: 680745137}
   - component: {fileID: 680745136}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1117,7 +1118,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: M
+  m_text: m
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b790ed56c4048a429cae32635500f4e, type: 2}
   m_sharedMaterial: {fileID: -7700294127281067263, guid: 4b790ed56c4048a429cae32635500f4e, type: 2}
@@ -1207,7 +1208,7 @@ GameObject:
   - component: {fileID: 829023792}
   - component: {fileID: 829023794}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Coins Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -23,13 +23,13 @@ public class deploy : MonoBehaviour
         float y = (float) GetRandomNumber(-1, 4);
         //int y  = rnd.NextDouble(-1.0f, 4.0f);
 
-        //spawnCoins(y);
-        spawnTrashCans(y);
+        spawnCoins(y);
+        //spawnTrashCans(y);
     }
 
-    private void spawnCoins(int y)
+    private void spawnCoins(float y)
     {
-        //feupPattern(y);
+        feupPattern(y);
         //ddjdPattern(y);
         //dnaPattern(y);
         //arrowPattern(y);
@@ -41,7 +41,7 @@ public class deploy : MonoBehaviour
         trashCan.transform.position = new Vector2(10, y);
     }
 
-    private void feupPattern(int y)
+    private void feupPattern(float y)
     {
         // F
         List<int> list = new List<int>(new int[]{0, 1, 2, 3, 6, 7, 8, 9, 12});
