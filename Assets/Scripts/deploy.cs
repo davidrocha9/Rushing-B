@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class deploy : MonoBehaviour
+public class Deploy : MonoBehaviour
 {
     public GameObject coinPrefab;
     public GameObject trashCanPrefab;
+    public GameObject lightBulbPrefab;
+    public Player player;
     private Vector2 screenBounds;
 
     // Use this for initialization
@@ -23,8 +25,9 @@ public class deploy : MonoBehaviour
         float y = (float) GetRandomNumber(-1, 4);
         //int y  = rnd.NextDouble(-1.0f, 4.0f);
 
-        spawnCoins(y);
+        //spawnCoins(y);
         //spawnTrashCans(y);
+        spawnLightBulbs(y);
     }
 
     private void spawnCoins(float y)
@@ -39,6 +42,11 @@ public class deploy : MonoBehaviour
     {
         GameObject trashCan = Instantiate(trashCanPrefab) as GameObject;
         trashCan.transform.position = new Vector2(10, y);
+    }
+
+    private void spawnLightBulbs(float y){
+        GameObject lightBulb = Instantiate(lightBulbPrefab) as GameObject;
+        lightBulb.transform.position = new Vector2(10, y);
     }
 
     private void feupPattern(float y)
@@ -100,7 +108,7 @@ public class deploy : MonoBehaviour
         }
     }
 
-    private void ddjdPattern(int y)
+    private void ddjdPattern(float y)
     {
         // D
         List<int> list = new List<int>(new int[]{0, 1, 3, 5, 6, 8, 9, 11, 12, 13});
@@ -155,7 +163,7 @@ public class deploy : MonoBehaviour
         }
     }
 
-    private void dnaPattern(int y)
+    private void dnaPattern(float y)
     {
         for (int i = 0; i < 3; i++) 
         {
@@ -221,7 +229,7 @@ public class deploy : MonoBehaviour
         }
     }
 
-    private void arrowPattern(int y)
+    private void arrowPattern(float y)
     {
         // F
         List<int> list = new List<int>(new int[]{0, 1, 5, 6, 10, 11, 14, 15, 17, 18, 20, 21});
@@ -245,6 +253,10 @@ public class deploy : MonoBehaviour
         spawn();
         while(true){
             yield return new WaitForSeconds(2);
+            if (player.alive) 
+            {
+                break;
+            }
             spawn();
         }
     }
