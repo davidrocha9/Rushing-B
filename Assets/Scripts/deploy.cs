@@ -22,20 +22,30 @@ public class Deploy : MonoBehaviour
     }
 
     private void spawn(){
-        float y = (float) GetRandomNumber(-1, 4);
-        //int y  = rnd.NextDouble(-1.0f, 4.0f);
+        float y = (float) GetRandomNumber(0, 100);
 
-        //spawnCoins(y);
-        spawnTrashCans();
-        //spawnLightBulbs();
+        if (y > 66)
+            spawnCoins();
+        else if (y > 33)
+            spawnTrashCans();
+        else
+            spawnLightBulbs();
     }
 
-    private void spawnCoins(float y)
+    private void spawnCoins()
     {
-        feupPattern(y);
-        //ddjdPattern(y);
-        //dnaPattern(y);
-        //arrowPattern(y);
+        float y = (float) GetRandomNumber(-1, 4);
+
+        float choice = (float) GetRandomNumber(0, 100);
+
+        if (choice > 75)
+            feupPattern(y);
+        else if (choice > 50)
+            ddjdPattern(y);
+        else if (choice > 25)
+            dnaPattern(y);
+        else
+            arrowPattern(y);
     }
 
     private void spawnTrashCans()
