@@ -18,9 +18,9 @@ public class TrashCan : MonoBehaviour
         if(transform.position.x < -10){
             Destroy(this.gameObject);
         }
-        transform.Translate(Vector3.left*7*Time.deltaTime);
         rotation += 1;
         transform.localRotation = Quaternion.Euler(0, 0, rotation);
+        transform.Translate(Vector3.left*7*Time.deltaTime,Space.World);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

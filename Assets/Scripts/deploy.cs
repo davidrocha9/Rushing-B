@@ -26,8 +26,8 @@ public class Deploy : MonoBehaviour
         //int y  = rnd.NextDouble(-1.0f, 4.0f);
 
         //spawnCoins(y);
-        //spawnTrashCans(y);
-        spawnLightBulbs(y);
+        spawnTrashCans();
+        //spawnLightBulbs();
     }
 
     private void spawnCoins(float y)
@@ -38,13 +38,15 @@ public class Deploy : MonoBehaviour
         //arrowPattern(y);
     }
 
-    private void spawnTrashCans(float y)
+    private void spawnTrashCans()
     {
+        float y = (float) GetRandomNumber(-1, 4);
         GameObject trashCan = Instantiate(trashCanPrefab) as GameObject;
         trashCan.transform.position = new Vector2(10, y);
     }
 
-    private void spawnLightBulbs(float y){
+    private void spawnLightBulbs(){
+        float y = (float) GetRandomNumber(2, 6);
         GameObject lightBulb = Instantiate(lightBulbPrefab) as GameObject;
         lightBulb.transform.position = new Vector2(10, y);
     }
@@ -253,7 +255,7 @@ public class Deploy : MonoBehaviour
         spawn();
         while(true){
             yield return new WaitForSeconds(2);
-            if (player.alive) 
+            if (!player.alive) 
             {
                 break;
             }

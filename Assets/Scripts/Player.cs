@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
         {
             alive = false;
             GameOverScreen.Setup();
+            animator.SetBool("Dirty", true);
         }
         else if (other.gameObject.CompareTag("LightBulb"))
         {
