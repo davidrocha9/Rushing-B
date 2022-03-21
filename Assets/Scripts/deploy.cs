@@ -2,17 +2,98 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum Obstacles 
+{
+  Coins,
+  TrashCans,
+  LightBulbs,
+  Notebooks
+}
+
+
 public class Deploy : MonoBehaviour
 {
     public GameObject coinPrefab;
+    public GameObject notebookPrefab;
     public GameObject trashCanPrefab;
     public GameObject lightBulbPrefab;
     public Player player;
     private Vector2 screenBounds;
+    private List<Obstacles> obstacles = new List<Obstacles>();
+    int obstacleCnt = 0;
 
+    private void QuickSort(int[] arr, int start, int end)
+    {
+        int i;
+        if (start < end)
+        {
+            i = Partition(arr, start, end);
+    
+            QuickSort(arr, start, i - 1);
+            QuickSort(arr, i + 1, end);
+        }
+    }
+    
+    private int Partition(int[] arr, int start, int end)
+    {
+        int temp;
+        int p = arr[end];
+        int i = start - 1;
+    
+        for (int j = start; j <= end - 1; j++)
+        {
+            if (arr[j] <= p)
+            {
+                i++;
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    
+        temp = arr[i + 1];
+        arr[i + 1] = arr[end];
+        arr[end] = temp;
+        return i + 1;
+    }
+    
     // Use this for initialization
     void Start () {
-        StartCoroutine(wave());
+        int cnt = 0;
+        for (int y = 0; y < 40; y++) {
+            switch(cnt){
+                case 0:
+                    obstacles.Add(Obstacles.Coins);
+                    break;
+                case 1:
+                    obstacles.Add(Obstacles.TrashCans);
+                    break;
+                default:
+                    break;
+            }
+            cnt++;
+            if (cnt > 1)
+            {
+                cnt = 0;
+            }
+        }
+
+        int[] arr = new int[40];
+        for (int x = 0; x < 40; x++) 
+        {
+            arr[x] = x;
+        }
+        QuickSort(arr, 0, 39);
+        List<Obstacles> temp = new List<Obstacles>(new Obstacles[60]);
+
+        for (int x = 0; x < 39; x++) {
+            temp[x] = obstacles[arr[x]];
+        }
+
+        obstacles = temp;
+
+        //StartCoroutine(wave());
+        spawn();
     }
 
     public double GetRandomNumber(double minimum, double maximum)
@@ -22,14 +103,32 @@ public class Deploy : MonoBehaviour
     }
 
     private void spawn(){
-        float y = (float) GetRandomNumber(0, 100);
+        Obstacles o = obstacles[obstacleCnt % 60];
+        
+        /*switch(o)
+        {
+            case Obstacles.Coins:
+                spawnCoins();
+                break;
+            case Obstacles.TrashCans:
+                spawnTrashCans();
+                break;
+            case Obstacles.LightBulbs:
+                spawnLightBulbs();
+                break;
+            default:
+                break;
+        }
 
-        if (y > 66)
-            spawnCoins();
-        else if (y > 33)
-            spawnTrashCans();
-        else
-            spawnLightBulbs();
+        obstacleCnt++;*/
+
+        spawnTrashCans();
+    }
+
+    private void spawnNotebookPrefab()
+    {
+        GameObject notebook = Instantiate(notebookPrefab) as GameObject;
+        notebook.transform.position = new Vector2(10, 0);
     }
 
     private void spawnCoins()
@@ -50,9 +149,9 @@ public class Deploy : MonoBehaviour
 
     private void spawnTrashCans()
     {
-        float y = (float) GetRandomNumber(-1, 4);
         GameObject trashCan = Instantiate(trashCanPrefab) as GameObject;
-        trashCan.transform.position = new Vector2(10, y);
+        GameObject player = GameObject.Find("Player");
+        trashCan.transform.position = new Vector2(10, player.transform.position.y);
     }
 
     private void spawnLightBulbs(){
@@ -262,7 +361,7 @@ public class Deploy : MonoBehaviour
     }
 
     IEnumerator wave(){
-        spawn();
+        //yield return new WaitForSeconds(2);
         while(true){
             yield return new WaitForSeconds(2);
             if (!player.alive) 

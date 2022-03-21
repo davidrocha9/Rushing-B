@@ -30,6 +30,12 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Coins"))
         {
             Destroy(other.gameObject);
+            ScoreController.instance.increaseCoins();
+        }
+        else if (other.gameObject.CompareTag("Notebook"))
+        {
+            Destroy(other.gameObject);
+            ScoreController.instance.increaseNotebooks();
         }
         else if (other.gameObject.CompareTag("TrashCan"))
         {

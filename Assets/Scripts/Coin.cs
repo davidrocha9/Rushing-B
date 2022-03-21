@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public int value = 1;
     public float speed = 10;
     private Vector2 screenBounds;
     
@@ -19,14 +18,6 @@ public class Coin : MonoBehaviour
         transform.Translate(Vector3.left*7*Time.deltaTime);
         if(transform.position.x < -9.039994){
             Destroy(this.gameObject);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            ScoreController.instance.ChangeScore(value);
         }
     }
 }
