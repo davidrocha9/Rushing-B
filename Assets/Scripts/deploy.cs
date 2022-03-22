@@ -361,7 +361,6 @@ public class Deploy : MonoBehaviour
     IEnumerator wave(){
         while(true){
             yield return new WaitForSeconds(2);
-            Debug.Log(player.alive);
             if (!player.alive) 
             {
                 CancelInvoke("spawnTrashCans");

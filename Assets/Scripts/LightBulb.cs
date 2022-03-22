@@ -14,24 +14,12 @@ public class LightBulb : MonoBehaviour
     {
         bc = this.GetComponent<BoxCollider2D>();
         initSpeed = speed;
-        gameOver = GameObject.FindGameObjectsWithTag("GameOver")[0];
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (true)
-        {
-            transform.Translate(Vector3.left*speed*Time.deltaTime);
-        }
-        else{
-            speed = speed - 0.05f;
-            if (speed > 0)
-                transform.Translate(Vector3.left*speed*Time.deltaTime);
-            else
-                speed = initSpeed + 0.01f;
-                initSpeed = speed;
-        }
+        transform.Translate(Vector3.left*speed*Time.deltaTime);
         
         if(transform.position.x < -10){
             Destroy(this.gameObject);
