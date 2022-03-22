@@ -14,6 +14,7 @@ public class CameraMovement : MonoBehaviour
         Application.targetFrameRate = 300;
         startPos = transform.position;
         initSpeed = speed;
+        
     }
 
     // Update is called once per frame

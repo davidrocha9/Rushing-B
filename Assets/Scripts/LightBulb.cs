@@ -5,20 +5,34 @@ using UnityEngine;
 public class LightBulb : MonoBehaviour
 {
     public BoxCollider2D bc;
+    public float speed, initSpeed;
     private Vector2 screenBounds;
-    public int speed;
+    GameObject gameOver;
     
     // Start is called before the first frame update
     void Start()
     {
         bc = this.GetComponent<BoxCollider2D>();
+        initSpeed = speed;
+        gameOver = GameObject.FindGameObjectsWithTag("GameOver")[0];
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left*7*Time.deltaTime);
-
+        if (gameOver.active)
+        {
+            transform.Translate(Vector3.left*speed*Time.deltaTime);
+        }
+        else{
+            speed = speed - 0.05f;
+            if (speed > 0)
+                transform.Translate(Vector3.left*speed*Time.deltaTime);
+            else
+                speed = initSpeed + 0.01f;
+                initSpeed = speed;
+        }
+        
         if(transform.position.x < -10){
             Destroy(this.gameObject);
         }

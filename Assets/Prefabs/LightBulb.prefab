@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1763943661141503912
+--- !u!1 &4269385543401385009
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1763943661141503927}
-  - component: {fileID: 1763943661141503926}
-  - component: {fileID: 1763943661141503913}
-  - component: {fileID: 6842229298340516268}
-  - component: {fileID: 1763943661141503924}
-  - component: {fileID: 7857330916173224728}
+  - component: {fileID: 4269385543401385015}
+  - component: {fileID: 4269385543401385014}
+  - component: {fileID: 4269385543401385013}
+  - component: {fileID: 4269385543401385012}
+  - component: {fileID: 4269385543401385011}
+  - component: {fileID: 4269385543401385010}
   m_Layer: 0
   m_Name: LightBulb
   m_TagString: LightBulb
@@ -21,27 +21,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1763943661141503927
+--- !u!4 &4269385543401385015
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763943661141503912}
+  m_GameObject: {fileID: 4269385543401385009}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.59, y: 1.62, z: 0}
+  m_LocalPosition: {x: 8.661472, y: 2.4305925, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1763943661141503926
+--- !u!212 &4269385543401385014
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763943661141503912}
+  m_GameObject: {fileID: 4269385543401385009}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -86,14 +86,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1763943661141503913
+--- !u!95 &4269385543401385013
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763943661141503912}
+  m_GameObject: {fileID: 4269385543401385009}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f68566ab5b9e4a242b6720a55d5356de, type: 2}
@@ -105,14 +105,14 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!50 &6842229298340516268
+--- !u!50 &4269385543401385012
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763943661141503912}
+  m_GameObject: {fileID: 4269385543401385009}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -126,13 +126,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &1763943661141503924
+--- !u!61 &4269385543401385011
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763943661141503912}
+  m_GameObject: {fileID: 4269385543401385009}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -152,17 +152,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14842038, y: 2.438017}
   m_EdgeRadius: 0
---- !u!114 &7857330916173224728
+--- !u!114 &4269385543401385010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763943661141503912}
+  m_GameObject: {fileID: 4269385543401385009}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72e6c091ed5b27b49ab61d5e0242c3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
   bc: {fileID: 0}
+  speed: 7
+  initSpeed: 0
+  player: {fileID: 0}
