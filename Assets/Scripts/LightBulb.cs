@@ -6,6 +6,7 @@ public class LightBulb : MonoBehaviour
 {
     public BoxCollider2D bc;
     private Vector2 screenBounds;
+    public int speed;
     
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class LightBulb : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.left*7*Time.deltaTime);
+
         if(transform.position.x < -10){
             Destroy(this.gameObject);
         }
