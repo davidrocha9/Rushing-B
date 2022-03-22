@@ -2,14 +2,101 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class deploy : MonoBehaviour
+enum Obstacles 
+{
+  Coins,
+  TrashCans,
+  LightBulbs,
+  Notebooks
+}
+
+
+public class Deploy : MonoBehaviour
 {
     public GameObject coinPrefab;
+    public GameObject notebookPrefab;
     public GameObject trashCanPrefab;
+    public GameObject lightBulbPrefab;
+    public Player player;
     private Vector2 screenBounds;
+    private List<Obstacles> obstacles = new List<Obstacles>();
+    int obstacleCnt = 0;
+    private static System.Timers.Timer aTimer;
 
+    private void QuickSort(int[] arr, int start, int end)
+    {
+        int i;
+        if (start < end)
+        {
+            i = Partition(arr, start, end);
+    
+            QuickSort(arr, start, i - 1);
+            QuickSort(arr, i + 1, end);
+        }
+    }
+    
+    private int Partition(int[] arr, int start, int end)
+    {
+        int temp;
+        int p = arr[end];
+        int i = start - 1;
+    
+        for (int j = start; j <= end - 1; j++)
+        {
+            if (arr[j] <= p)
+            {
+                i++;
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    
+        temp = arr[i + 1];
+        arr[i + 1] = arr[end];
+        arr[end] = temp;
+        return i + 1;
+    }
+    
     // Use this for initialization
     void Start () {
+        int cnt = 0;
+        for (int y = 0; y < 60; y++) {
+            switch(cnt){
+                case 0:
+                    obstacles.Add(Obstacles.Coins);
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    obstacles.Add(Obstacles.LightBulbs);
+                    break;
+                default:
+                    break;
+            }
+            cnt++;
+            if (cnt > 4)
+            {
+                cnt = 0;
+            }
+        }
+
+        int[] arr = new int[60];
+        for (int x = 0; x < 60; x++) 
+        {
+            arr[x] = x;
+        }
+        QuickSort(arr, 0, 59);
+        List<Obstacles> temp = new List<Obstacles>(new Obstacles[60]);
+
+        for (int x = 0; x < 60; x++) {
+            temp[x] = obstacles[arr[x]];
+        }
+
+        InvokeRepeating("spawnTrashCans", 2.0f, 7.0f);
+        InvokeRepeating("spawnNotebook", 5.0f, 15.0f);
+
         StartCoroutine(wave());
     }
 
@@ -20,25 +107,55 @@ public class deploy : MonoBehaviour
     }
 
     private void spawn(){
-        float y = (float) GetRandomNumber(-1, 4);
-        //int y  = rnd.NextDouble(-1.0f, 4.0f);
+        Obstacles o = obstacles[obstacleCnt % 60];
+        switch(o)
+        {
+            case Obstacles.Coins:
+                spawnCoins();
+                break;
+            case Obstacles.LightBulbs:
+                spawnLightBulbs();
+                break;
+            default:
+                break;
+        }
 
-        spawnCoins(y);
-        //spawnTrashCans(y);
+        obstacleCnt++;
     }
 
-    private void spawnCoins(float y)
+    private void spawnNotebook()
     {
-        feupPattern(y);
-        //ddjdPattern(y);
-        //dnaPattern(y);
-        //arrowPattern(y);
+        GameObject notebook = Instantiate(notebookPrefab) as GameObject;
+        notebook.transform.position = new Vector2(10, 0);
     }
 
-    private void spawnTrashCans(float y)
+    private void spawnCoins()
+    {
+        float y = (float) GetRandomNumber(-1, 4);
+
+        float choice = (float) GetRandomNumber(0, 100);
+
+        if (choice > 75)
+            feupPattern(y);
+        else if (choice > 50)
+            ddjdPattern(y);
+        else if (choice > 25)
+            dnaPattern(y);
+        else
+            arrowPattern(y);
+    }
+
+    private void spawnTrashCans()
     {
         GameObject trashCan = Instantiate(trashCanPrefab) as GameObject;
-        trashCan.transform.position = new Vector2(10, y);
+        GameObject player = GameObject.Find("Player");
+        trashCan.transform.position = new Vector2(10, player.transform.position.y);
+    }
+
+    private void spawnLightBulbs(){
+        float y = (float) GetRandomNumber(2, 6);
+        GameObject lightBulb = Instantiate(lightBulbPrefab) as GameObject;
+        lightBulb.transform.position = new Vector2(10, y);
     }
 
     private void feupPattern(float y)
@@ -100,7 +217,7 @@ public class deploy : MonoBehaviour
         }
     }
 
-    private void ddjdPattern(int y)
+    private void ddjdPattern(float y)
     {
         // D
         List<int> list = new List<int>(new int[]{0, 1, 3, 5, 6, 8, 9, 11, 12, 13});
@@ -155,7 +272,7 @@ public class deploy : MonoBehaviour
         }
     }
 
-    private void dnaPattern(int y)
+    private void dnaPattern(float y)
     {
         for (int i = 0; i < 3; i++) 
         {
@@ -221,7 +338,7 @@ public class deploy : MonoBehaviour
         }
     }
 
-    private void arrowPattern(int y)
+    private void arrowPattern(float y)
     {
         // F
         List<int> list = new List<int>(new int[]{0, 1, 5, 6, 10, 11, 14, 15, 17, 18, 20, 21});
@@ -242,9 +359,14 @@ public class deploy : MonoBehaviour
     }
 
     IEnumerator wave(){
-        spawn();
         while(true){
             yield return new WaitForSeconds(2);
+            if (!player.alive) 
+            {
+                CancelInvoke("spawnTrashCans");
+                CancelInvoke("spawnNotebooks");
+                break;
+            }
             spawn();
         }
     }
