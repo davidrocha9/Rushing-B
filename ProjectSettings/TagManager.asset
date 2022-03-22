@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Coins
+  - TrashCan
+  - LightBulb
+  - TopRightScore
+  - Notebook
   layers:
   - Default
   - TransparentFX

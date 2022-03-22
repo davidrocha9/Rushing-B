@@ -7,27 +7,32 @@ public class Jetpack : MonoBehaviour
     public int jumpforce;
     Rigidbody2D rb;
     Animator animator;
+    Player player;
+    public int cnt = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         rb=GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        player = gameObject.GetComponent(typeof(Player)) as Player;
     }
 
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("Height", transform.position.y);
-        if (animator)
-        if (Input.GetKey("up"))
+        if (player.alive)
         {
-            rb.AddForce(Vector2.up*jumpforce);
-            animator.SetBool("Falling", false);
-            //transform.position = new Vector2(0, Mathf.Clamp(transform.position.x, -2f, 2f));
-        }
-        else {
-            animator.SetBool("Falling", true);
+            animator.SetFloat("Height", transform.position.y);
+            if (Input.GetKey("up"))
+            {
+                cnt += 1;
+                rb.AddForce(Vector2.up*jumpforce);
+                animator.SetBool("Falling", false);
+            }
+            else {
+                animator.SetBool("Falling", true);
+            }
         }
     }
 }
