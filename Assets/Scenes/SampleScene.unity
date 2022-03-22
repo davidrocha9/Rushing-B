@@ -1186,6 +1186,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62846defdde1be4aaf0e719f4c6b48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 8162473127120852983, guid: f409cc0b3a006154096c946283cbbf58, type: 3}
+  notebookPrefab: {fileID: 1698797725178627386, guid: d5fda64000165234689ca371e5253fe0, type: 3}
+  trashCanPrefab: {fileID: 6383027357700675775, guid: b23c038f27a5e7547940f26d99c17016, type: 3}
+  lightBulbPrefab: {fileID: 4269385543401385009, guid: 4852612c10868a840937fad58cdb2bab, type: 3}
+  player: {fileID: 917721221}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1242,36 +1247,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &680234221
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 680234222}
-  m_Layer: 0
-  m_Name: fdafsad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &680234222
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 680234221}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.517295, y: -2.0589123, z: -4.506667}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &680745134
 GameObject:
