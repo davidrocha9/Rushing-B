@@ -15,7 +15,7 @@ public class TrashCan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float spawnTime = Time.time;
+        spawnTime = Time.time;
         player = GameObject.Find("Player");
         warning = Instantiate(warningPrefab) as GameObject;
         warning.transform.position = new Vector2(5, player.transform.position.y);
@@ -45,12 +45,16 @@ public class TrashCan : MonoBehaviour
         }
     }
 
+    void Awake(){
+        spawnTime = Time.time;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - spawnTime < 5.0f)
+        if (Time.time - spawnTime < 2.0f)
         {
-            if (Time.time - spawnTime > 4.0f && !secondPhase && !warning.GetComponent<SpriteRenderer>().sprite.name.Contains("warning2"))
+            if (Time.time - spawnTime > 1.0f && !secondPhase && !warning.GetComponent<SpriteRenderer>().sprite.name.Contains("warning2"))
             {   
                 secondPhase = true;
                 float y = warning.transform.position.y;
@@ -78,7 +82,7 @@ public class TrashCan : MonoBehaviour
             }
             rotation += 5;
             transform.localRotation = Quaternion.Euler(0, 0, rotation);
-            transform.Translate(Vector3.left*14*Time.deltaTime,Space.World);
+            transform.Translate(Vector3.left*17*Time.deltaTime,Space.World);
         }
     }
 }

@@ -36,7 +36,6 @@ public class GameOverScreen : MonoBehaviour
 
     public void Update()
     {
-        var trans = 0.5f;
         var col = GameObject.FindGameObjectsWithTag("TopRightScore")[0].GetComponent<CanvasGroup>();
         col.alpha -= 0.01f;
     }

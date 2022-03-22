@@ -21,6 +21,7 @@ public class Deploy : MonoBehaviour
     private Vector2 screenBounds;
     private List<Obstacles> obstacles = new List<Obstacles>();
     int obstacleCnt = 0;
+    private static System.Timers.Timer aTimer;
 
     private void QuickSort(int[] arr, int start, int end)
     {
@@ -60,40 +61,43 @@ public class Deploy : MonoBehaviour
     // Use this for initialization
     void Start () {
         int cnt = 0;
-        for (int y = 0; y < 40; y++) {
+        for (int y = 0; y < 60; y++) {
             switch(cnt){
                 case 0:
                     obstacles.Add(Obstacles.Coins);
                     break;
                 case 1:
-                    obstacles.Add(Obstacles.TrashCans);
+                case 2:
+                case 3:
+                case 4:
+                    obstacles.Add(Obstacles.LightBulbs);
                     break;
                 default:
                     break;
             }
             cnt++;
-            if (cnt > 1)
+            if (cnt > 4)
             {
                 cnt = 0;
             }
         }
 
-        int[] arr = new int[40];
-        for (int x = 0; x < 40; x++) 
+        int[] arr = new int[60];
+        for (int x = 0; x < 60; x++) 
         {
             arr[x] = x;
         }
-        QuickSort(arr, 0, 39);
+        QuickSort(arr, 0, 59);
         List<Obstacles> temp = new List<Obstacles>(new Obstacles[60]);
 
-        for (int x = 0; x < 39; x++) {
+        for (int x = 0; x < 60; x++) {
             temp[x] = obstacles[arr[x]];
         }
 
-        obstacles = temp;
+        InvokeRepeating("spawnTrashCans", 2.0f, 7.0f);
+        InvokeRepeating("spawnNotebook", 5.0f, 15.0f);
 
-        //StartCoroutine(wave());
-        spawn();
+        StartCoroutine(wave());
     }
 
     public double GetRandomNumber(double minimum, double maximum)
@@ -104,14 +108,10 @@ public class Deploy : MonoBehaviour
 
     private void spawn(){
         Obstacles o = obstacles[obstacleCnt % 60];
-        
-        /*switch(o)
+        switch(o)
         {
             case Obstacles.Coins:
                 spawnCoins();
-                break;
-            case Obstacles.TrashCans:
-                spawnTrashCans();
                 break;
             case Obstacles.LightBulbs:
                 spawnLightBulbs();
@@ -120,12 +120,10 @@ public class Deploy : MonoBehaviour
                 break;
         }
 
-        obstacleCnt++;*/
-
-        spawnTrashCans();
+        obstacleCnt++;
     }
 
-    private void spawnNotebookPrefab()
+    private void spawnNotebook()
     {
         GameObject notebook = Instantiate(notebookPrefab) as GameObject;
         notebook.transform.position = new Vector2(10, 0);
@@ -361,7 +359,6 @@ public class Deploy : MonoBehaviour
     }
 
     IEnumerator wave(){
-        //yield return new WaitForSeconds(2);
         while(true){
             yield return new WaitForSeconds(2);
             if (!player.alive) 
