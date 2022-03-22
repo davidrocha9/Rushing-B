@@ -20,7 +20,7 @@ public class LightBulb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameOver.active)
+        if (true)
         {
             transform.Translate(Vector3.left*speed*Time.deltaTime);
         }
