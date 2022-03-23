@@ -7,6 +7,7 @@ public class LightBulb : MonoBehaviour
     public BoxCollider2D bc;
     public float speed, initSpeed;
     private Vector2 screenBounds;
+    Player player;
     GameObject gameOver;
     
     // Start is called before the first frame update
@@ -14,12 +15,24 @@ public class LightBulb : MonoBehaviour
     {
         bc = this.GetComponent<BoxCollider2D>();
         initSpeed = speed;
+        player = (Player) Resources.FindObjectsOfTypeAll(typeof(Player))[0];
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left*speed*Time.deltaTime);
+        if (player.alive)
+        {
+            transform.Translate(Vector3.left*speed*Time.deltaTime);
+        }
+        else{
+            speed = speed - 0.05f;
+            if (speed > 0)
+                transform.Translate(Vector3.left*speed*Time.deltaTime);
+            else
+                speed = initSpeed + 0.01f;
+                initSpeed = speed;
+        }
         
         if(transform.position.x < -10){
             Destroy(this.gameObject);
