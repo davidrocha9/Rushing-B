@@ -37,6 +37,10 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             ScoreController.instance.increaseNotebooks();
         }
+        else if (other.gameObject.CompareTag("Mask"))
+        {
+            Destroy(other.gameObject);
+        }
         else if (other.gameObject.CompareTag("TrashCan"))
         {
             alive = false;

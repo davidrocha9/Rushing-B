@@ -7,13 +7,15 @@ enum Obstacles
   Coins,
   TrashCans,
   LightBulbs,
-  Notebooks
+  Notebooks,
+  Masks
 }
 
 
 public class Deploy : MonoBehaviour
 {
     public GameObject coinPrefab;
+    public GameObject maskPrefab;
     public GameObject notebookPrefab;
     public GameObject trashCanPrefab;
     public GameObject lightBulbPrefab;
@@ -96,6 +98,7 @@ public class Deploy : MonoBehaviour
 
         InvokeRepeating("spawnTrashCans", 2.0f, 7.0f);
         InvokeRepeating("spawnNotebook", 5.0f, 15.0f);
+        InvokeRepeating("spawnMask", 2.0f, 4.0f);
 
         StartCoroutine(wave());
     }
@@ -127,6 +130,12 @@ public class Deploy : MonoBehaviour
     {
         GameObject notebook = Instantiate(notebookPrefab) as GameObject;
         notebook.transform.position = new Vector2(10, 0);
+    }
+
+    private void spawnMask()
+    {
+        GameObject mask = Instantiate(maskPrefab) as GameObject;
+        mask.transform.position = new Vector2(10, 0);
     }
 
     private void spawnCoins()
@@ -364,7 +373,8 @@ public class Deploy : MonoBehaviour
             if (!player.alive) 
             {
                 CancelInvoke("spawnTrashCans");
-                CancelInvoke("spawnNotebooks");
+                CancelInvoke("spawnNotebook");
+                CancelInvoke("spawnMask");
                 break;
             }
             spawn();
