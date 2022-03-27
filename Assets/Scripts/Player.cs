@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public static Player instance;
     public GameOverScreen GameOverScreen;
     public bool alive = true;
+    public bool shield = false;
+    public bool invincibility = false;
     Rigidbody2D rb;
     public BoxCollider2D bc;
     public Animator animator;
@@ -40,18 +42,35 @@ public class Player : MonoBehaviour
         else if (other.gameObject.CompareTag("Mask"))
         {
             Destroy(other.gameObject);
+            shield = true;
         }
         else if (other.gameObject.CompareTag("TrashCan"))
         {
-            alive = false;
-            GameOverScreen.Setup();
-            animator.SetBool("Dirty", true);
+            if (invincibility) {
+
+            }
+            else if (shield && !invincibility) {
+                shield = false;
+            }
+            else {
+                alive = false;
+                GameOverScreen.Setup();
+                animator.SetBool("Dirty", true);
+            }
         }
         else if (other.gameObject.CompareTag("LightBulb"))
         {
-            alive = false;
-            GameOverScreen.Setup();
-            animator.SetBool("Shocked", true);
+            if (invincibility) {
+
+            }
+            else if (shield && !invincibility) {
+                shield = false;
+            }
+            else {
+                alive = false;
+                GameOverScreen.Setup();
+                animator.SetBool("Shocked", true);
+            }
         }
     }
 }

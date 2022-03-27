@@ -16,6 +16,7 @@ public class Deploy : MonoBehaviour
 {
     public GameObject coinPrefab;
     public GameObject maskPrefab;
+    public GameObject shieldPrefab;
     public GameObject notebookPrefab;
     public GameObject trashCanPrefab;
     public GameObject lightBulbPrefab;
@@ -134,8 +135,11 @@ public class Deploy : MonoBehaviour
 
     private void spawnMask()
     {
-        GameObject mask = Instantiate(maskPrefab) as GameObject;
-        mask.transform.position = new Vector2(10, 0);
+        float choice = (float) GetRandomNumber(0, 100);
+        if (choice > 50) {
+            GameObject mask = Instantiate(maskPrefab) as GameObject;
+            mask.transform.position = new Vector2(10, 0);
+        }
     }
 
     private void spawnCoins()
@@ -162,7 +166,7 @@ public class Deploy : MonoBehaviour
     }
 
     private void spawnLightBulbs(){
-        float y = (float) GetRandomNumber(2, 6);
+        float y = (float) GetRandomNumber(3, 7);
         GameObject lightBulb = Instantiate(lightBulbPrefab) as GameObject;
         lightBulb.transform.position = new Vector2(10, y);
     }

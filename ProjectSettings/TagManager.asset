@@ -10,6 +10,7 @@ TagManager:
   - TopRightScore
   - Notebook
   - Mask
+  - Shield
   layers:
   - Default
   - TransparentFX
