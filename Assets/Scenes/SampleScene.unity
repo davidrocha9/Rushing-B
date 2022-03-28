@@ -1187,6 +1187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 8162473127120852983, guid: f409cc0b3a006154096c946283cbbf58, type: 3}
+  maskPrefab: {fileID: 314790836853493770, guid: 8f9b93ff406d048429fccf48c5b0020f, type: 3}
   notebookPrefab: {fileID: 1698797725178627386, guid: d5fda64000165234689ca371e5253fe0, type: 3}
   trashCanPrefab: {fileID: 6383027357700675775, guid: b23c038f27a5e7547940f26d99c17016, type: 3}
   lightBulbPrefab: {fileID: 4269385543401385009, guid: 4852612c10868a840937fad58cdb2bab, type: 3}
@@ -1728,6 +1729,7 @@ GameObject:
   - component: {fileID: 917721222}
   - component: {fileID: 917721221}
   - component: {fileID: 917721226}
+  - component: {fileID: 917721227}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1774,7 +1776,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 220bc493db79ed042ae1d44ff88d0ed4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1813,10 +1815,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06fa3729e9801bf4dbecdf6241335e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverScreen: {fileID: 1749149538}
-  alive: 1
   bc: {fileID: 0}
   animator: {fileID: 0}
+  GameOverScreen: {fileID: 1749149538}
+  alive: 1
+  shield: 0
+  invincibility: 0
 --- !u!114 &917721222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1911,6 +1915,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 810870719}
   bulletPrefab: {fileID: 1034031460068753856, guid: 4f9b9968c8cb5f14f851cf82c33ac0d1, type: 3}
+--- !u!114 &917721227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917721218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d4c11c2ef454a42a6206ea3c796291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldPrefab: {fileID: 8881002041221651919, guid: 1745050c16eebfa4996531d576063709, type: 3}
 --- !u!1 &993390664
 GameObject:
   m_ObjectHideFlags: 0

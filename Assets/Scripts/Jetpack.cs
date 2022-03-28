@@ -13,7 +13,7 @@ public class Jetpack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb=GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         player = gameObject.GetComponent(typeof(Player)) as Player;
     }

@@ -9,6 +9,8 @@ TagManager:
   - LightBulb
   - TopRightScore
   - Notebook
+  - Mask
+  - Shield
   layers:
   - Default
   - TransparentFX

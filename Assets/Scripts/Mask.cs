@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Notebook : MonoBehaviour
+public class Mask : MonoBehaviour
 {
   private Vector3 _startPosition;
-  public float frequency = 5f;
-  public float magnitude = 5f;
+  public float frequency = 1f;
+  public float magnitude = 1f;
   public float offset = 0f;
 
   // Start is called before the first frame update
@@ -28,9 +28,6 @@ public class Notebook : MonoBehaviour
 
   private void OnTriggerEnter2D(Collider2D other)
   {
-    if (other.gameObject.CompareTag("Player"))
-    {
-      ScoreController.instance.increaseNotebooks();
-    }
+    
   }
 }
