@@ -1477,16 +1477,6 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f62846defdde1be4aaf0e719f4c6b48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 8162473127120852983, guid: f409cc0b3a006154096c946283cbbf58, type: 3}
-  maskPrefab: {fileID: 314790836853493770, guid: 8f9b93ff406d048429fccf48c5b0020f, type: 3}
-  notebookPrefab: {fileID: 1698797725178627386, guid: d5fda64000165234689ca371e5253fe0, type: 3}
-  trashCanPrefab: {fileID: 6383027357700675775, guid: b23c038f27a5e7547940f26d99c17016, type: 3}
-  lightBulbPrefab: {fileID: 4269385543401385009, guid: 4852612c10868a840937fad58cdb2bab, type: 3}
-  player: {fileID: 917721221}
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 661d56fa2a706b24c8d85ea20bee149e, type: 2}
   m_CullingMode: 0
@@ -2120,8 +2110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06fa3729e9801bf4dbecdf6241335e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bc: {fileID: 0}
-  animator: {fileID: 0}
   GameOverScreen: {fileID: 1749149538}
   alive: 1
   shield: 0
@@ -2221,6 +2209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 810870719}
   bulletPrefab: {fileID: 1034031460068753856, guid: 4f9b9968c8cb5f14f851cf82c33ac0d1, type: 3}
+  spawner: {fileID: 1986730675}
 --- !u!114 &917721227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2234,7 +2223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldPrefab: {fileID: 8881002041221651919, guid: 1745050c16eebfa4996531d576063709, type: 3}
-  spawner: {fileID: 1986730675}
 --- !u!1 &993390664
 GameObject:
   m_ObjectHideFlags: 0
@@ -4406,6 +4394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 8162473127120852983, guid: f409cc0b3a006154096c946283cbbf58, type: 3}
+  maskPrefab: {fileID: 314790836853493770, guid: 8f9b93ff406d048429fccf48c5b0020f, type: 3}
   notebookPrefab: {fileID: 1698797725178627386, guid: d5fda64000165234689ca371e5253fe0, type: 3}
   trashCanPrefab: {fileID: 6383027357700675775, guid: b23c038f27a5e7547940f26d99c17016, type: 3}
   lightBulbPrefab: {fileID: 4269385543401385009, guid: 4852612c10868a840937fad58cdb2bab, type: 3}
