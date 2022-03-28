@@ -8,6 +8,7 @@ public class GameOverScreen : MonoBehaviour
     public TextMeshProUGUI coinsAlive, coinsGameOver;
     public TextMeshProUGUI metersAlive, metersGameOver;
     public TextMeshProUGUI notebooksAlive, notebooksGameOver;
+    public GameObject score;
     
     public void Setup() {
         gameObject.SetActive(true);
@@ -36,7 +37,7 @@ public class GameOverScreen : MonoBehaviour
 
     public void Update()
     {
-        var col = GameObject.FindGameObjectsWithTag("TopRightScore")[0].GetComponent<CanvasGroup>();
+        var col = score.GetComponent<CanvasGroup>();
         col.alpha -= 0.01f;
     }
 }

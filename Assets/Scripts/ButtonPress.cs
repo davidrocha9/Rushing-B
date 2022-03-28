@@ -29,6 +29,6 @@ public class ButtonPress : MonoBehaviour
         animator.Play("PressedDown", -1, 0f);
         parentAnimator.SetBool("Start", true);
         game.SetActive(true);
-        spawner .SetActive(true);
+        spawner.SetActive(true);
     }
 }
