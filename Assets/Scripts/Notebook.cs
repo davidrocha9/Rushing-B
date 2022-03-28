@@ -8,6 +8,7 @@ public class Notebook : MonoBehaviour
     public float frequency = 5f;
     public float magnitude = 5f;
     public float offset = 0f;
+    public  
     
     // Start is called before the first frame update
     void Start()

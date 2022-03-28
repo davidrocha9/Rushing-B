@@ -9,6 +9,8 @@ TagManager:
   - LightBulb
   - TopRightScore
   - Notebook
+  - Teacher
+  - Bullet
   layers:
   - Default
   - TransparentFX
