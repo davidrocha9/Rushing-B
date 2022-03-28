@@ -22,7 +22,7 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(shield != null) shield.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.2f);
     }
    
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,6 +31,7 @@ public class Shield : MonoBehaviour
             // TODO: activate shield sprite
             active = true;
             shield = Instantiate(shieldPrefab) as GameObject;
+            shield.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.2f);
         }
         else if(!player.shield && active) {
             // TODO: deactivate shield sprite
