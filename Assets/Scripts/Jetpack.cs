@@ -5,6 +5,7 @@ using UnityEngine;
 public class Jetpack : MonoBehaviour
 {
     public int jumpforce;
+    public GameObject spawner;
     Rigidbody2D rb;
     Animator animator;
     Player player;
@@ -21,9 +22,9 @@ public class Jetpack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.alive)
+        animator.SetFloat("Height", transform.position.y);
+        if (player.alive && spawner.activeInHierarchy)
         {
-            animator.SetFloat("Height", transform.position.y);
             if (Input.GetKey("up"))
             {
                 cnt += 1;

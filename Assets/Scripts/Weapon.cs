@@ -6,12 +6,12 @@ public class Weapon : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public GameObject spawner;
 
     // Update is called once per frame
     void Update()
     {
-        // Shooting
-        if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space"))
+        if((Input.GetButtonDown("Fire1") || Input.GetKeyDown("space")) && spawner.activeInHierarchy)
         {
             Shoot();
         }

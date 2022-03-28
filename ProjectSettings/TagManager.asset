@@ -7,10 +7,13 @@ TagManager:
   - Coins
   - TrashCan
   - LightBulb
-  - TopRightScore
   - Notebook
+<<<<<<< HEAD
   - Mask
   - Shield
+=======
+  - TopLeftScore
+>>>>>>> startMenu
   layers:
   - Default
   - TransparentFX

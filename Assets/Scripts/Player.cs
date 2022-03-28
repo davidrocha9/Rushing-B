@@ -10,14 +10,13 @@ public class Player : MonoBehaviour
     public bool shield = false;
     public bool invincibility = false;
     Rigidbody2D rb;
-    public BoxCollider2D bc;
-    public Animator animator;
+    Animator animator;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
     }
 
