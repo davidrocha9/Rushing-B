@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8881002041221651762}
   - component: {fileID: 8881002041221651761}
-  - component: {fileID: 8881002041221651760}
   - component: {fileID: 929090510064233775}
   - component: {fileID: 6818030667492127849}
   m_Layer: 0
@@ -85,22 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8881002041221651760
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8881002041221651919}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
 --- !u!50 &929090510064233775
 Rigidbody2D:
   serializedVersion: 4
@@ -116,7 +99,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -134,3 +117,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d4c11c2ef454a42a6206ea3c796291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldPrefab: {fileID: 8881002041221651919}
+  active: 0

@@ -8,6 +8,7 @@ public class Shield : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
     public GameObject shieldPrefab;
+    public bool active = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,16 +21,14 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    public void Activate()
-    {
-        
-    }
-
-    public void Deactivate()
-    {
-
+        if(player.shield && !active) {
+            active = true;
+            // TODO: activate shield sprite
+            // GameObject shield = Instantiate(shieldPrefab) as GameObject;
+        }
+        else if(!player.shield && active) {
+            active = false;
+            // TODO: deactivate shield sprite
+        }
     }
 }
