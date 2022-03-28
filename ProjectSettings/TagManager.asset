@@ -8,12 +8,8 @@ TagManager:
   - TrashCan
   - LightBulb
   - Notebook
-<<<<<<< HEAD
   - Mask
   - Shield
-=======
-  - TopLeftScore
->>>>>>> startMenu
   layers:
   - Default
   - TransparentFX
