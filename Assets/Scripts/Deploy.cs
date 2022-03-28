@@ -16,7 +16,6 @@ public class Deploy : MonoBehaviour
 {
     public GameObject coinPrefab;
     public GameObject maskPrefab;
-    public GameObject shieldPrefab;
     public GameObject notebookPrefab;
     public GameObject trashCanPrefab;
     public GameObject lightBulbPrefab;
@@ -110,7 +109,8 @@ public class Deploy : MonoBehaviour
         return random.NextDouble() * (maximum - minimum) + minimum;
     }
 
-    private void spawn(){
+    private void spawn()
+    {
         Obstacles o = obstacles[obstacleCnt % 60];
         switch(o)
         {
@@ -371,8 +371,9 @@ public class Deploy : MonoBehaviour
         }
     }
 
-    IEnumerator wave(){
-        while(true){
+    IEnumerator wave() 
+    {
+        while(true) {
             yield return new WaitForSeconds(2);
             if (!player.alive) 
             {

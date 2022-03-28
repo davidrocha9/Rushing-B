@@ -4,30 +4,32 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-  public static Shield instance;
-  Player player;
-  Rigidbody2D rb;
-  Animator animator;
+    Player player;
+    Rigidbody2D rb;
+    Animator animator;
+    public GameObject shieldPrefab;
 
-  // Start is called before the first frame update
-  void Start()
-  {
+    // Start is called before the first frame update
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         player = gameObject.GetComponent(typeof(Player)) as Player;
-  }
+    }
 
-  // Update is called once per frame
-  void Update()
-  {
-        if (!player.shield)
-        {
-            
-        }
-  }
+    // Update is called once per frame
+    void Update()
+    {
 
-  private void OnTriggerEnter2D(Collider2D other)
-  {
-    
-  }
+    }
+
+    public void Activate()
+    {
+        
+    }
+
+    public void Deactivate()
+    {
+
+    }
 }
