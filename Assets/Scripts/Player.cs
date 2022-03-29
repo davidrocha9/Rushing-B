@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public GameOverScreen GameOverScreen;
     public bool alive = true;
     public bool shield = false;
+    public bool coffeeBuff = false;
     public bool invincibility = false;
     Rigidbody2D rb;
     Animator animator;
@@ -71,5 +72,18 @@ public class Player : MonoBehaviour
                 animator.SetBool("Shocked", true);
             }
         }
+        else if (other.gameObject.CompareTag("Coffee"))
+        {
+            Destroy(other.gameObject);
+            coffeeBuff = true;
+            StartCoroutine(DisableCoffeeBuff());
+
+        }
+    }
+
+    IEnumerator DisableCoffeeBuff()
+    {
+        yield return new WaitForSeconds(10);
+        coffeeBuff = false;
     }
 }

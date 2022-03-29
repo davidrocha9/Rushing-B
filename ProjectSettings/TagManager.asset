@@ -10,6 +10,8 @@ TagManager:
   - Notebook
   - Mask
   - Shield
+  - TopRightScore
+  - Coffee
   layers:
   - Default
   - TransparentFX

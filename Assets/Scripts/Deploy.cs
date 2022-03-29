@@ -8,7 +8,8 @@ enum Obstacles
   TrashCans,
   LightBulbs,
   Notebooks,
-  Masks
+  Coffees,
+  Masks,
 }
 
 
@@ -16,6 +17,7 @@ public class Deploy : MonoBehaviour
 {
     public GameObject coinPrefab;
     public GameObject maskPrefab;
+    public GameObject coffeePrefab;
     public GameObject notebookPrefab;
     public GameObject trashCanPrefab;
     public GameObject lightBulbPrefab;
@@ -98,6 +100,7 @@ public class Deploy : MonoBehaviour
 
         InvokeRepeating("spawnTrashCans", 2.0f, 7.0f);
         InvokeRepeating("spawnNotebook", 5.0f, 15.0f);
+        InvokeRepeating("spawnCoffee", 2.0f, 4.0f);
         InvokeRepeating("spawnMask", 2.0f, 4.0f);
 
         StartCoroutine(wave());
@@ -139,6 +142,15 @@ public class Deploy : MonoBehaviour
         if (choice > 50) {
             GameObject mask = Instantiate(maskPrefab) as GameObject;
             mask.transform.position = new Vector2(10, 0);
+        }
+    }
+
+    private void spawnCoffee()
+    {
+        float choice = (float) GetRandomNumber(0, 100);
+        if (choice > 75) {
+            GameObject coffee = Instantiate(coffeePrefab) as GameObject;
+            coffee.transform.position = new Vector2(10, 0);
         }
     }
 
@@ -379,6 +391,7 @@ public class Deploy : MonoBehaviour
             {
                 CancelInvoke("spawnTrashCans");
                 CancelInvoke("spawnNotebook");
+                CancelInvoke("spawnCoffee");
                 CancelInvoke("spawnMask");
                 break;
             }

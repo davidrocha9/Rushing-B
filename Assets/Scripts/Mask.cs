@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mask : MonoBehaviour
 {
   private Vector3 _startPosition;
-  public float frequency = 1f;
+  public float frequency = 10f;
   public float magnitude = 1f;
   public float offset = 0f;
 

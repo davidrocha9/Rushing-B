@@ -2113,6 +2113,7 @@ MonoBehaviour:
   GameOverScreen: {fileID: 1749149538}
   alive: 1
   shield: 0
+  coffeeBuff: 0
   invincibility: 0
 --- !u!114 &917721222
 MonoBehaviour:
@@ -4395,6 +4396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 8162473127120852983, guid: f409cc0b3a006154096c946283cbbf58, type: 3}
   maskPrefab: {fileID: 314790836853493770, guid: 8f9b93ff406d048429fccf48c5b0020f, type: 3}
+  coffeePrefab: {fileID: 7183166856160386680, guid: 65ddf3b5c6e9929498d14ee5948d7c67, type: 3}
   notebookPrefab: {fileID: 1698797725178627386, guid: d5fda64000165234689ca371e5253fe0, type: 3}
   trashCanPrefab: {fileID: 6383027357700675775, guid: b23c038f27a5e7547940f26d99c17016, type: 3}
   lightBulbPrefab: {fileID: 4269385543401385009, guid: 4852612c10868a840937fad58cdb2bab, type: 3}

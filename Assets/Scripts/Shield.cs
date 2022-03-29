@@ -37,6 +37,6 @@ public class Shield : MonoBehaviour
             // TODO: deactivate shield sprite
             active = false;
             Destroy(shield);
-        }   
+        }
     }
 }
