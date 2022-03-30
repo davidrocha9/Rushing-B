@@ -14,8 +14,12 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.right * bulletSpeed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Destroy(gameObject);
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("TrashCan")) {
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.CompareTag("NPC")) {
+            Destroy(gameObject);
+        }
     }
 }

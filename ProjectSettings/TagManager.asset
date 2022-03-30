@@ -12,6 +12,7 @@ TagManager:
   - Shield
   - TopRightScore
   - Coffee
+  - Bullet
   layers:
   - Default
   - TransparentFX
