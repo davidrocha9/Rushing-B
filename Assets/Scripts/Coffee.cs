@@ -18,6 +18,7 @@ public class Coffee : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         player = gameObject.GetComponent(typeof(Player)) as Player;
+        _startPosition = transform.position;
     }
 
     // Update is called once per frame
