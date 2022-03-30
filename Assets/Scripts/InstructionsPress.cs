@@ -17,10 +17,10 @@ public class InstructionsPress : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(maincamera.transform.position.x);
+        // Debug.Log(maincamera.transform.position.x);
         if (maincamera.transform.position.x == -17.64f)
         {
-            Debug.Log("goods");
+            // Debug.Log("goods");
             if (Input.anyKey)
             {
                 parentAnimator.Play("CloseInstructions");

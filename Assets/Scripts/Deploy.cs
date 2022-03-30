@@ -138,21 +138,23 @@ public class Deploy : MonoBehaviour
 
     private void spawnMask()
     {
-        int maskSpawnChance = 50;
+        int maskSpawnChance = 50; // controls chance in percentage
         float choice = (float) GetRandomNumber(0, 100);
-        if (choice > (100 - maskSpawnChance)) {
+        if (choice >= (100 - maskSpawnChance)) {
+            float y = (float) GetRandomNumber(-3, 3);
             GameObject mask = Instantiate(maskPrefab) as GameObject;
-            mask.transform.position = new Vector2(10, 0);
+            mask.transform.position = new Vector2(10, y);
         }
     }
 
     private void spawnCoffee()
     {
-        int coffeeSpawnChance = 20;
+        int coffeeSpawnChance = 25; // controls chance in percentage
         float choice = (float) GetRandomNumber(0, 100);
-        if (choice > (100 - coffeeSpawnChance)) {
+        if (choice >= (100 - coffeeSpawnChance)) {
+            float y = (float) GetRandomNumber(-3, 3);
             GameObject coffee = Instantiate(coffeePrefab) as GameObject;
-            coffee.transform.position = new Vector2(10, 0);
+            coffee.transform.position = new Vector2(10, y);
         }
     }
 

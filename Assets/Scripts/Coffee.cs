@@ -8,8 +8,8 @@ public class Coffee : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
     private Vector3 _startPosition;
-    public float frequency = 5f;
-    public float magnitude = 0.2f;
+    public float frequency = 10f;
+    public float magnitude = 1f;
     public float offset = 0f;
 
     // Start is called before the first frame update

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Notebook : MonoBehaviour
 {
   private Vector3 _startPosition;
-  public float frequency = 5f;
+  public float frequency = 1f;
   public float magnitude = 5f;
   public float offset = 0f;
 
