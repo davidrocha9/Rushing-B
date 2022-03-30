@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TrashCan : MonoBehaviour
 {
+    public int health = 3;
     public int rotation = 0;
     private Vector2 screenBounds;
     public GameObject warningPrefab, warningPrefab2;
@@ -83,6 +84,15 @@ public class TrashCan : MonoBehaviour
             rotation += 5;
             transform.localRotation = Quaternion.Euler(0, 0, rotation);
             transform.Translate(Vector3.left*17*Time.deltaTime,Space.World);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Bullet")) {
+            if(transform.position.x < 10) {
+                if (health > 0) health--;
+                else Destroy(this.gameObject);
+            }
         }
     }
 }
