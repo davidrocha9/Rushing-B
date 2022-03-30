@@ -4400,6 +4400,7 @@ MonoBehaviour:
   notebookPrefab: {fileID: 1698797725178627386, guid: d5fda64000165234689ca371e5253fe0, type: 3}
   trashCanPrefab: {fileID: 6383027357700675775, guid: b23c038f27a5e7547940f26d99c17016, type: 3}
   lightBulbPrefab: {fileID: 4269385543401385009, guid: 4852612c10868a840937fad58cdb2bab, type: 3}
+  lightBulbInvertedPrefab: {fileID: 5831155903692745311, guid: 214ebaab99cc2194d9fc78151ea75831, type: 3}
   player: {fileID: 917721221}
 --- !u!4 &1986730677
 Transform:

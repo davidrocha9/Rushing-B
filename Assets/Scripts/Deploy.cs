@@ -12,19 +12,19 @@ enum Obstacles
   Masks,
 }
 
-
 public class Deploy : MonoBehaviour
 {
+    int obstacleCnt = 0;
     public GameObject coinPrefab;
     public GameObject maskPrefab;
     public GameObject coffeePrefab;
     public GameObject notebookPrefab;
     public GameObject trashCanPrefab;
     public GameObject lightBulbPrefab;
+    public GameObject lightBulbInvertedPrefab;
     public Player player;
     private Vector2 screenBounds;
     private List<Obstacles> obstacles = new List<Obstacles>();
-    int obstacleCnt = 0;
     private static System.Timers.Timer aTimer;
 
     private void QuickSort(int[] arr, int start, int end)
@@ -138,8 +138,9 @@ public class Deploy : MonoBehaviour
 
     private void spawnMask()
     {
+        int maskSpawnChance = 50;
         float choice = (float) GetRandomNumber(0, 100);
-        if (choice > 50) {
+        if (choice > (100 - maskSpawnChance)) {
             GameObject mask = Instantiate(maskPrefab) as GameObject;
             mask.transform.position = new Vector2(10, 0);
         }
@@ -147,8 +148,9 @@ public class Deploy : MonoBehaviour
 
     private void spawnCoffee()
     {
+        int coffeeSpawnChance = 20;
         float choice = (float) GetRandomNumber(0, 100);
-        if (choice > 75) {
+        if (choice > (100 - coffeeSpawnChance)) {
             GameObject coffee = Instantiate(coffeePrefab) as GameObject;
             coffee.transform.position = new Vector2(10, 0);
         }
@@ -157,17 +159,12 @@ public class Deploy : MonoBehaviour
     private void spawnCoins()
     {
         float y = (float) GetRandomNumber(-1, 4);
-
         float choice = (float) GetRandomNumber(0, 100);
 
-        if (choice > 75)
-            feupPattern(y);
-        else if (choice > 50)
-            ddjdPattern(y);
-        else if (choice > 25)
-            dnaPattern(y);
-        else
-            arrowPattern(y);
+        if (choice > 75) feupPattern(y);
+        else if (choice > 50) ddjdPattern(y);
+        else if (choice > 25) dnaPattern(y);
+        else arrowPattern(y);
     }
 
     private void spawnTrashCans()
@@ -177,10 +174,19 @@ public class Deploy : MonoBehaviour
         trashCan.transform.position = new Vector2(10, player.transform.position.y);
     }
 
-    private void spawnLightBulbs(){
-        float y = (float) GetRandomNumber(3, 7);
-        GameObject lightBulb = Instantiate(lightBulbPrefab) as GameObject;
-        lightBulb.transform.position = new Vector2(10, y);
+    private void spawnLightBulbs() 
+    {
+        float choice = (float) GetRandomNumber(0, 100);
+        if(choice > 50) {
+            float y = (float) GetRandomNumber(3, 7);
+            GameObject lightBulb = Instantiate(lightBulbPrefab) as GameObject;
+            lightBulb.transform.position = new Vector2(10, y);
+        }
+        else {
+            float y = (float) GetRandomNumber(-4, -8);
+            GameObject lightBulb = Instantiate(lightBulbInvertedPrefab) as GameObject;
+            lightBulb.transform.position = new Vector2(10, y);
+        }
     }
 
     private void feupPattern(float y)
