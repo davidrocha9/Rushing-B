@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 5831155903692745309}
   - component: {fileID: -6808269155651515283}
   m_Layer: 0
-  m_Name: LightBulb Inverted
-  m_TagString: LightBulb
+  m_Name: LightBulbInverted
+  m_TagString: LightBulbInverted
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

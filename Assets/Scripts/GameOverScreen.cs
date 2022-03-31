@@ -21,6 +21,7 @@ public class GameOverScreen : MonoBehaviour
 
         GameObject[] coins = GameObject.FindGameObjectsWithTag("Coins");
         GameObject[] lightbulbs = GameObject.FindGameObjectsWithTag("LightBulb");
+        GameObject[] invLightbulbs = GameObject.FindGameObjectsWithTag("LightBulbInverted");
         GameObject[] trashcans = GameObject.FindGameObjectsWithTag("TrashCan");
 
         foreach (GameObject coin in coins) {
@@ -29,7 +30,12 @@ public class GameOverScreen : MonoBehaviour
 
         foreach (GameObject lightbulb in lightbulbs) {
             LightBulb l = lightbulb.GetComponent<LightBulb>();
-            l.bc.enabled = false; // FIXME: NullReferenceException in console
+            l.bc.enabled = false;
+        }
+
+        foreach (GameObject invLightbulb in invLightbulbs) {
+            LightBulbInverted il = invLightbulb.GetComponent<LightBulbInverted>();
+            il.bc.enabled = false;
         }
 
         foreach (GameObject trashcan in trashcans) {

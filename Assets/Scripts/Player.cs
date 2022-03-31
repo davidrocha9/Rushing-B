@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
                 animator.SetBool("Dirty", true);
             }
         }
-        else if (other.gameObject.CompareTag("LightBulb"))
+        else if (other.gameObject.CompareTag("LightBulb") || other.gameObject.CompareTag("LightBulbInverted"))
         {
             if (invincibility) {
 
