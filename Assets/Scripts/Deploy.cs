@@ -106,12 +106,6 @@ public class Deploy : MonoBehaviour
         StartCoroutine(wave());
     }
 
-    public double GetRandomNumber(double minimum, double maximum)
-    { 
-        System.Random random = new System.Random();
-        return random.NextDouble() * (maximum - minimum) + minimum;
-    }
-
     private void spawn()
     {
         Obstacles o = obstacles[obstacleCnt % 60];
@@ -156,8 +150,8 @@ public class Deploy : MonoBehaviour
 
     private void spawnCoins()
     {
-        float y = (float) GetRandomNumber(-1, 4);
-        float choice = (float) GetRandomNumber(0, 100);
+        float y = (float) Random.Range(-1f, 4f);
+        float choice = (float) Random.Range(0f, 100f);
 
         if (choice > 75) feupPattern(y);
         else if (choice > 50) ddjdPattern(y);
