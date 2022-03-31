@@ -18,8 +18,8 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag("TrashCan")) {
             Destroy(gameObject);
         }
-        else if (other.gameObject.CompareTag("NPC")) {
-            Destroy(gameObject);
-        }
+        // else if (other.gameObject.CompareTag("NPC")) {
+        //     Destroy(gameObject);
+        // }
     }
 }

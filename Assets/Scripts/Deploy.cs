@@ -138,23 +138,19 @@ public class Deploy : MonoBehaviour
 
     private void spawnMask()
     {
-        int maskSpawnChance = 50; // controls chance in percentage
-        float choice = (float) GetRandomNumber(0, 100);
-        if (choice >= (100 - maskSpawnChance)) {
-            float y = (float) GetRandomNumber(-3, 3);
+        int maskSpawnChance = 40; // controls chance in percentage
+        if (Random.Range(0f, 100f) >= (100 - maskSpawnChance)) {
             GameObject mask = Instantiate(maskPrefab) as GameObject;
-            mask.transform.position = new Vector2(10, y);
+            mask.transform.position = new Vector2(10, Random.Range(-3.5f, 3.5f));
         }
     }
 
     private void spawnCoffee()
     {
-        int coffeeSpawnChance = 25; // controls chance in percentage
-        float choice = (float) GetRandomNumber(0, 100);
-        if (choice >= (100 - coffeeSpawnChance)) {
-            float y = (float) GetRandomNumber(-3, 3);
+        int coffeeSpawnChance = 20; // controls chance in percentage
+        if (Random.Range(0f, 100f) >= (100 - coffeeSpawnChance)) {
             GameObject coffee = Instantiate(coffeePrefab) as GameObject;
-            coffee.transform.position = new Vector2(10, y);
+            coffee.transform.position = new Vector2(10, Random.Range(-2.5f, 2.5f));
         }
     }
 
@@ -178,16 +174,13 @@ public class Deploy : MonoBehaviour
 
     private void spawnLightBulbs() 
     {
-        float choice = (float) GetRandomNumber(0, 100);
-        if(choice > 50) {
-            float y = (float) GetRandomNumber(3, 7);
+        if(Random.Range(0f, 100f) > 50) {
             GameObject lightBulb = Instantiate(lightBulbPrefab) as GameObject;
-            lightBulb.transform.position = new Vector2(10, y);
+            lightBulb.transform.position = new Vector2(10, Random.Range(2f, 6f));
         }
         else {
-            float y = (float) GetRandomNumber(-4, -8);
             GameObject lightBulb = Instantiate(lightBulbInvertedPrefab) as GameObject;
-            lightBulb.transform.position = new Vector2(10, y);
+            lightBulb.transform.position = new Vector2(10, Random.Range(-2f, -6f));
         }
     }
 
