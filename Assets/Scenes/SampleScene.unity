@@ -2733,7 +2733,6 @@ GameObject:
   - component: {fileID: 917721222}
   - component: {fileID: 917721221}
   - component: {fileID: 917721226}
-  - component: {fileID: 917721227}
   - component: {fileID: 941459260}
   m_Layer: 3
   m_Name: Player
@@ -2920,18 +2919,6 @@ MonoBehaviour:
   firePoint: {fileID: 810870719}
   bulletPrefab: {fileID: 1034031460068753856, guid: 4f9b9968c8cb5f14f851cf82c33ac0d1, type: 3}
   spawner: {fileID: 1986730675}
---- !u!114 &917721227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 917721218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &941459260
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,9 +6,9 @@ using TMPro;
 public class GameOverScreen : MonoBehaviour
 {
     public TextMeshProUGUI finalScore;
-    public TextMeshProUGUI coinsAlive, coinsGameOver;
-    public TextMeshProUGUI metersAlive, metersGameOver;
-    public TextMeshProUGUI notebooksAlive, notebooksGameOver;
+    public TextMeshProUGUI coinsAlive, coinsGameOver, finalCoins;
+    public TextMeshProUGUI metersAlive, metersGameOver, finalMeters;
+    public TextMeshProUGUI notebooksAlive, notebooksGameOver, finalNotebooks;
     public GameObject score;
     
     public void Setup() {
@@ -17,7 +17,12 @@ public class GameOverScreen : MonoBehaviour
         coinsGameOver.text = System.Int32.Parse(coinsAlive.text).ToString();
         metersGameOver.text = System.Int32.Parse(metersAlive.text).ToString();
         notebooksGameOver.text = System.Int32.Parse(notebooksAlive.text).ToString();
-        finalScore.text = buildFinalScoreText(getFinalScore());
+
+        finalCoins.text = System.Int32.Parse(coinsAlive.text).ToString();
+        finalMeters.text = (System.Int32.Parse(metersAlive.text) * 2).ToString();
+        finalNotebooks.text = (System.Int32.Parse(notebooksAlive.text) * 100).ToString();
+
+        finalScore.text = getFinalScore().ToString();
 
         GameObject[] coins = GameObject.FindGameObjectsWithTag("Coins");
         GameObject[] lightbulbs = GameObject.FindGameObjectsWithTag("LightBulb");
