@@ -21,6 +21,10 @@ public class Jetpack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    void FixedUpdate()
+    {
         animator.SetFloat("Height", transform.position.y);
         if (player.alive && spawner.activeInHierarchy)
         {
