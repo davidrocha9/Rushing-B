@@ -49,5 +49,11 @@ public class Player : MonoBehaviour
             GameOverScreen.Setup();
             animator.SetBool("Shocked", true);
         }
+        else if (other.gameObject.CompareTag("EnemyBullet"))
+        {
+            alive = false;
+            GameOverScreen.Setup();
+            animator.Play("Dead");
+        }
     }
 }
