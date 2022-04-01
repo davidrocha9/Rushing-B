@@ -14,14 +14,20 @@ TagManager:
   - Coffee
   - Bullet
   - LightBulbInverted
+  - Teacher
+  - Bullet
+  - HealthBar
+  - Fill
+  - Stats
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Teacher
   - 
   - 
   - 

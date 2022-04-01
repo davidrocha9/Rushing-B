@@ -79,6 +79,12 @@ public class Player : MonoBehaviour
             StartCoroutine(DisableCoffeeBuff());
 
         }
+        else if (other.gameObject.CompareTag("EnemyBullet"))
+        {
+            alive = false;
+            GameOverScreen.Setup();
+            animator.Play("Dead");
+        }
     }
 
     IEnumerator DisableCoffeeBuff()

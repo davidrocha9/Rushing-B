@@ -9,7 +9,6 @@ public class Jetpack : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
     Player player;
-    public int cnt = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +26,6 @@ public class Jetpack : MonoBehaviour
         {
             if (Input.GetKey("up"))
             {
-                cnt += 1;
                 rb.AddForce(Vector2.up*jumpforce);
                 animator.SetBool("Falling", false);
             }

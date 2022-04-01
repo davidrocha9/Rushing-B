@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 enum Obstacles 
 {
@@ -22,6 +23,8 @@ public class Deploy : MonoBehaviour
     public GameObject trashCanPrefab;
     public GameObject lightBulbPrefab;
     public GameObject lightBulbInvertedPrefab;
+    public List<GameObject> teachers;
+    int teacherCnt = 0;
     public Player player;
     private Vector2 screenBounds;
     private List<Obstacles> obstacles = new List<Obstacles>();
@@ -108,6 +111,11 @@ public class Deploy : MonoBehaviour
 
     private void spawn()
     {
+        if (obstacleCnt % 10 == 0 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
+        {
+            spawnTeacher();
+        }
+        
         Obstacles o = obstacles[obstacleCnt % 60];
         switch(o)
         {
@@ -122,6 +130,14 @@ public class Deploy : MonoBehaviour
         }
 
         obstacleCnt++;
+    }
+
+    private void spawnTeacher()
+    {
+        Debug.Log(teacherCnt);
+        GameObject teacher = Instantiate(teachers[teacherCnt % 3]) as GameObject;
+        teacher.transform.position = new Vector2(10, 0);
+        teacherCnt++;
     }
 
     private void spawnNotebook()
