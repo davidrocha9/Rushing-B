@@ -2820,10 +2820,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverScreen: {fileID: 1749149538}
+  scoreController: {fileID: 1389381143}
   alive: 1
   shield: 0
   coffeeBuff: 0
   invincibility: 0
+  activatePower: 0
 --- !u!114 &917721222
 MonoBehaviour:
   m_ObjectHideFlags: 0
