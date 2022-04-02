@@ -10,6 +10,8 @@ public class ButtonPress : MonoBehaviour
     private Animation anim;
     public GameObject game;
     public GameObject spawner;
+    public AudioClip gameMusic;
+    public AudioManager audioManager;
     
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,7 @@ public class ButtonPress : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animator = gameObject.GetComponent<Animator>();
         parentAnimator = gameObject.transform.parent.gameObject.GetComponent<Animator>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -28,6 +31,7 @@ public class ButtonPress : MonoBehaviour
     {
         animator.Play("PressedDown", -1, 0f);
         parentAnimator.SetBool("Start", true);
+        audioManager.ChangeBackgroundMusic(gameMusic);
         game.SetActive(true);
         spawner.SetActive(true);
     }
