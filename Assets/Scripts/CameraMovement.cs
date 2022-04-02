@@ -7,6 +7,7 @@ public class CameraMovement : MonoBehaviour
     public float speed, initSpeed;
     public Vector3 startPos;
     public Player player;
+    public GameObject gameStarted;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,11 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameStarted.activeInHierarchy)
+        {
+            speed += 0.00005f;
+        }
+        
         if (player.alive)
         {
             transform.Translate(Vector3.left*speed*Time.deltaTime);

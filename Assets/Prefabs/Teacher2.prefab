@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1089641029550891383
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,6 +182,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   fill: {fileID: 0}
   spriteR: {fileID: 0}
+  jetpackFX: {fileID: 8300000, guid: f8bf855081959cd40a8c622ed961305a, type: 3}
+  hitFX: {fileID: 8300000, guid: 5f3a7d102ce0b5a48b2eba18ed1cfda0, type: 3}
+  deadFX: {fileID: 8300000, guid: f096bf9f5c5076146810694e40f463ed, type: 3}
 --- !u!114 &1089641029550891381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 582111111237503674, guid: 705d7ede246649e44a0efa3d7bdd069d, type: 3}
+  bulletMusic: {fileID: 8300000, guid: e98032358b37f8149805c38a5b3d6542, type: 3}
 --- !u!95 &8412142108311218599
 Animator:
   serializedVersion: 3

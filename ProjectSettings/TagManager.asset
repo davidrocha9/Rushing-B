@@ -19,6 +19,9 @@ TagManager:
   - Fill
   - Stats
   - EnemyBullet
+  - SoundFX
+  - AISoundManager
+  - CameraMovement
   layers:
   - Default
   - TransparentFX
@@ -56,6 +59,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: TopRightScore
+    uniqueID: 2215227733
+    locked: 0
   - name: Floor
     uniqueID: 2544998937
     locked: 0
@@ -64,7 +70,4 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3592459957
-    locked: 0
-  - name: Score
-    uniqueID: 2215227733
     locked: 0

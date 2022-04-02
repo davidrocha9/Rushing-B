@@ -12,6 +12,8 @@ public class TrashCan : MonoBehaviour
     GameObject player;
     float spawnTime;
     bool increaseOpacity, secondPhase;
+    SoundFXManager audioManager;
+    public AudioClip warningMusic, deployMusic;
     
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,7 @@ public class TrashCan : MonoBehaviour
         warning.GetComponent<SpriteRenderer>().color -= new Color (0, 0, 0, 1);
         increaseOpacity = false;
         secondPhase = false;
+        audioManager = GameObject.FindGameObjectsWithTag("SoundFX")[0].GetComponent<SoundFXManager>();
     }
 
     void animateWarning(GameObject warning)
@@ -58,6 +61,7 @@ public class TrashCan : MonoBehaviour
             if (Time.time - spawnTime > 1.0f && !secondPhase && !warning.GetComponent<SpriteRenderer>().sprite.name.Contains("warning2"))
             {   
                 secondPhase = true;
+                audioManager.playFX(warningMusic, 0.2f);
                 float y = warning.transform.position.y;
                 Destroy(warning);
                 warning = Instantiate(warningPrefab2) as GameObject;
@@ -75,6 +79,7 @@ public class TrashCan : MonoBehaviour
         {
             if (warning != null)
             {
+                audioManager.playFX(deployMusic, 0.2f);
                 transform.position = new Vector2(10, warning.transform.position.y);
                 Destroy(warning);
             }

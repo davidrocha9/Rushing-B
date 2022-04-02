@@ -17,6 +17,8 @@ public class AIJetpack : MonoBehaviour
     public Image fill;
     public SpriteRenderer spriteR;
     bool alive = true;
+    AISoundManager audioManager;
+    public AudioClip jetpackFX, hitFX, deadFX;
 
     // Start is called before the first frame update
     void Start()
@@ -27,14 +29,12 @@ public class AIJetpack : MonoBehaviour
         statsAnimator = GameObject.FindGameObjectsWithTag("Stats")[0].GetComponent<Animator>();
         slider = GameObject.FindGameObjectsWithTag("HealthBar")[0].GetComponent<Slider>();
         fill = GameObject.FindGameObjectsWithTag("Fill")[0].GetComponent<Image>();
+        audioManager = GameObject.FindGameObjectsWithTag("AISoundManager")[0].GetComponent<AISoundManager>();
         slider.value = 100;
         fill.color = gradient.Evaluate(slider.normalizedValue);
         statsAnimator.Play("TeacherStats_FadeIn");
         spriteR = gameObject.GetComponent<SpriteRenderer>();
-        if (spriteR.sprite.name == "teacher2_flying_spritesheet_0")
-        {
-            Debug.Log("goods");
-        }
+        audioManager.playFX(jetpackFX, 0.25f);
     }
 
 
@@ -61,14 +61,17 @@ public class AIJetpack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {   
+        if (slider.value == 0)
+            return;
+        
         if (other.gameObject.CompareTag("Bullet"))
         {
             slider.value -= 10;
             fill.color = gradient.Evaluate(slider.normalizedValue);
             if (slider.value == 0)
             {
+                audioManager.playFX(deadFX, 0.15f);
                 statsAnimator.Play("TeacherStats_FadeOut");
-                Debug.Log(spriteR.sprite.name);
                 if (spriteR.sprite.name.Contains("teacher1"))
                 {
                     animator.Play("Teacher1_Dead");
@@ -84,6 +87,10 @@ public class AIJetpack : MonoBehaviour
 
                 rb.gravityScale = 2;
                 alive = false;
+            }
+            else
+            {
+                audioManager.playFX(hitFX, 0.15f);
             }
         }
     }

@@ -9,6 +9,7 @@ public class LightBulb : MonoBehaviour
     private Vector2 screenBounds;
     Player player;
     GameObject gameOver;
+    CameraMovement cameraMovement;
     
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,8 @@ public class LightBulb : MonoBehaviour
         bc = this.GetComponent<BoxCollider2D>();
         initSpeed = speed;
         player = (Player) Resources.FindObjectsOfTypeAll(typeof(Player))[0];
+        cameraMovement = GameObject.FindGameObjectsWithTag("CameraMovement")[0].GetComponent<CameraMovement>();
+        speed = cameraMovement.speed;
     }
 
     // Update is called once per frame

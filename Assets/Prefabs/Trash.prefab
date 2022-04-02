@@ -144,8 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbdd1d398ff4ab43baf03f5257e7fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: 1
+  health: 3
+  rotation: 5
   warningPrefab: {fileID: 8813117141091659653, guid: d6a5112d4a1a403498fcf5e6b2c95a17, type: 3}
   warningPrefab2: {fileID: 5951364931637959303, guid: f1b28001a7eec4545962d4db0c3bac28, type: 3}
-  warning: {fileID: 0}
-  player: {fileID: 0}
+  warningMusic: {fileID: 8300000, guid: b2bacbf05e593884db32989c0a39f6b8, type: 3}
+  deployMusic: {fileID: 8300000, guid: fa2954085f06a0b47b119c34dbf01a62, type: 3}

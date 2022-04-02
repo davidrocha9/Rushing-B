@@ -10,6 +10,8 @@ public class Weapon : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public GameObject spawner;
+    public SoundFXManager audioManager;
+    public AudioClip bulletMusic;
 
     void Start()
     {
@@ -38,6 +40,6 @@ public class Weapon : MonoBehaviour
         else {
             Instantiate(bulletPrefab, new Vector3((float)(firePoint.position.x + 0.4), firePoint.position.y, firePoint.position.z), firePoint.rotation);
         }
-
+        audioManager.playFX(bulletMusic, 0.02f);
     }
 }
