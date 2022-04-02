@@ -3158,6 +3158,7 @@ MonoBehaviour:
   coinFX: {fileID: 8300000, guid: e568f54ed370dd94cbce5617d562242b, type: 3}
   shockedFX: {fileID: 8300000, guid: 1842797f9cff717419b2f99c5f6f4ef0, type: 3}
   trashCanFX: {fileID: 8300000, guid: f1a9341a95d9ca44d81a65f0414caee0, type: 3}
+  deadFX: {fileID: 8300000, guid: f096bf9f5c5076146810694e40f463ed, type: 3}
 --- !u!114 &917721222
 MonoBehaviour:
   m_ObjectHideFlags: 0
