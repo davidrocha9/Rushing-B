@@ -111,7 +111,7 @@ public class Deploy : MonoBehaviour
 
     private void spawn()
     {
-        if (obstacleCnt % 30 == 0 && obstacleCnt != 1 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
+        if (obstacleCnt % 10 == 0 && obstacleCnt != 1 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
         {
             spawnTeacher();
             obstacleCnt++;
@@ -165,6 +165,7 @@ public class Deploy : MonoBehaviour
     private void spawnCoffee()
     {
         int coffeeSpawnChance = 20; // controls chance in percentage
+        if (player.coffeeBuff) coffeeSpawnChance = 0;
         if (Random.Range(0f, 100f) >= (100 - coffeeSpawnChance)) {
             GameObject coffee = Instantiate(coffeePrefab) as GameObject;
             coffee.transform.position = new Vector2(10, Random.Range(-2.5f, 2.5f));
@@ -401,18 +402,23 @@ public class Deploy : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (!player.alive)
+        {
+            CancelInvoke("spawnTrashCans");
+            CancelInvoke("spawnNotebook");
+            CancelInvoke("spawnCoffee");
+            CancelInvoke("spawnMask");
+        }
+    }
+
     IEnumerator wave() 
     {
         while(true) {
             yield return new WaitForSeconds(2);
-            if (!player.alive) 
-            {
-                CancelInvoke("spawnTrashCans");
-                CancelInvoke("spawnNotebook");
-                CancelInvoke("spawnCoffee");
-                CancelInvoke("spawnMask");
-                break;
-            }
+            if (!player.alive) break;
             spawn();
         }
     }

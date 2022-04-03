@@ -3150,10 +3150,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverScreen: {fileID: 1749149538}
+  scoreController: {fileID: 1389381143}
   alive: 1
   shield: 0
   coffeeBuff: 0
   invincibility: 0
+  activatePower: 0
   audioManager: {fileID: 1558262613}
   coinFX: {fileID: 8300000, guid: e568f54ed370dd94cbce5617d562242b, type: 3}
   shockedFX: {fileID: 8300000, guid: 1842797f9cff717419b2f99c5f6f4ef0, type: 3}

@@ -9,7 +9,7 @@ public class ScoreController : MonoBehaviour
     public TextMeshProUGUI meters;
     public TextMeshProUGUI coins;
     public TextMeshProUGUI notebooks;
-    int coinsCnt = 0, notebooksCnt = 0, currentMeters = 0, incrementMetersCounter = 0;
+    float coinsCnt = 0, notebooksCnt = 0, currentMeters = 0, incrementMetersCounter = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -41,5 +41,11 @@ public class ScoreController : MonoBehaviour
     {
         notebooksCnt += 1;
         notebooks.text = notebooksCnt.ToString().PadLeft(2, '0');
+    }
+
+    public void buyCoffe()
+    {
+        coinsCnt = Mathf.Round(0.50f * coinsCnt);
+        coins.text = coinsCnt.ToString().PadLeft(3, '0');
     }
 }

@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("space") && spawner.activeInHierarchy)
+        if(Input.GetKeyDown("space") && spawner.activeInHierarchy && player.alive)
         {
             Shoot();
         }
