@@ -10,16 +10,19 @@ public class GameOverScreen : MonoBehaviour
     public TextMeshProUGUI metersAlive, metersGameOver, finalMeters;
     public TextMeshProUGUI notebooksAlive, notebooksGameOver, finalNotebooks;
     public GameObject score;
+    public AudioClip gameMusic;
+    public AudioManager audioManager;
     
     public void Setup() {
         gameObject.SetActive(true);
+        audioManager.ChangeBackgroundMusic(gameMusic);
 
         coinsGameOver.text = System.Int32.Parse(coinsAlive.text).ToString();
         metersGameOver.text = System.Int32.Parse(metersAlive.text).ToString();
         notebooksGameOver.text = System.Int32.Parse(notebooksAlive.text).ToString();
 
-        finalCoins.text = System.Int32.Parse(coinsAlive.text).ToString();
-        finalMeters.text = (System.Int32.Parse(metersAlive.text) * 2).ToString();
+        finalCoins.text = (System.Int32.Parse(coinsAlive.text) * 2).ToString();
+        finalMeters.text = System.Int32.Parse(metersAlive.text).ToString();
         finalNotebooks.text = (System.Int32.Parse(notebooksAlive.text) * 100).ToString();
 
         finalScore.text = getFinalScore().ToString();

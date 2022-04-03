@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public bool coffeeBuff = false;
     public bool invincibility = false;
     public bool activatePower = false;
+    public SoundFXManager audioManager;
+    public AudioClip coinFX, shockedFX, trashCanFX, deadFX;
     Rigidbody2D rb;
     Animator animator;
 
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour
         if (alive) {
             if (other.gameObject.CompareTag("Coins"))
             {
+                audioManager.playFX(coinFX, 0.15f);
                 Destroy(other.gameObject);
                 ScoreController.instance.increaseCoins();
             }
@@ -85,6 +88,7 @@ public class Player : MonoBehaviour
                     shield = false;
                 }
                 else {
+                    audioManager.playFX(trashCanFX, 0.15f);
                     alive = false;
                     DeleteAll();
                     GameOverScreen.Setup();
@@ -100,6 +104,7 @@ public class Player : MonoBehaviour
                     shield = false;
                 }
                 else {
+                    audioManager.playFX(shockedFX, 0.15f);
                     alive = false;
                     DeleteAll();
                     GameOverScreen.Setup();
@@ -116,6 +121,7 @@ public class Player : MonoBehaviour
             }
             else if (other.gameObject.CompareTag("EnemyBullet"))
             {
+                audioManager.playFX(deadFX, 0.15f);
                 alive = false;
                 DeleteAll();
                 GameOverScreen.Setup();
@@ -128,7 +134,8 @@ public class Player : MonoBehaviour
     {
         foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
         {
-            if (o.CompareTag("TrashCan") || o.CompareTag("Mask") || o.CompareTag("Notebook") || o.CompareTag("Coins") || o.CompareTag("Teacher") || o.CompareTag("Stats"))
+            if (o.CompareTag("TrashCan") || o.CompareTag("Mask") || o.CompareTag("Notebook") ||
+            o.CompareTag("Coins") || o.CompareTag("Teacher") || o.CompareTag("Stats") || o.CompareTag("Warning"))
             {
                 Destroy(o);
             }
