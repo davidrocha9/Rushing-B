@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         if (alive) {
             if (other.gameObject.CompareTag("Coins"))
             {
-                audioManager.playFX(coinFX, 0.15f);
+                audioManager.playFX(coinFX, 0.10f);
                 Destroy(other.gameObject);
                 ScoreController.instance.increaseCoins();
             }
@@ -121,11 +121,19 @@ public class Player : MonoBehaviour
             }
             else if (other.gameObject.CompareTag("EnemyBullet"))
             {
-                audioManager.playFX(deadFX, 0.15f);
-                alive = false;
-                DeleteAll();
-                GameOverScreen.Setup();
-                animator.Play("Dead");
+                if (invincibility) {
+
+                }
+                else if (shield && !invincibility) {
+                    shield = false;
+                }
+                else {
+                    audioManager.playFX(deadFX, 0.15f);
+                    alive = false;
+                    DeleteAll();
+                    GameOverScreen.Setup();
+                    animator.Play("Dead");
+                }
             }
         }
     }
