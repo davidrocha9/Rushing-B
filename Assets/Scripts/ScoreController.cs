@@ -9,6 +9,7 @@ public class ScoreController : MonoBehaviour
     public TextMeshProUGUI meters;
     public TextMeshProUGUI coins;
     public TextMeshProUGUI notebooks;
+    public GameObject pauseMenu;
     float coinsCnt = 0, notebooksCnt = 0, currentMeters = 0, incrementMetersCounter = 0;
     
     // Start is called before the first frame update
@@ -21,6 +22,10 @@ public class ScoreController : MonoBehaviour
     }
 
     void Update()
+    {
+    }
+
+    void FixedUpdate()
     {
         incrementMetersCounter += 1;
         if (incrementMetersCounter > 10)

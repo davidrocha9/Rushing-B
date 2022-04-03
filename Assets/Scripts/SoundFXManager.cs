@@ -9,7 +9,6 @@ public class SoundFXManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(fxMusic.volume);
     }
 
     // Update is called once per frame
@@ -20,6 +19,5 @@ public class SoundFXManager : MonoBehaviour
     public void playFX(AudioClip music, float volume) {
         fxMusic.volume = volume;
         fxMusic.PlayOneShot(music);
-        Debug.Log(fxMusic.volume);
     }
 }

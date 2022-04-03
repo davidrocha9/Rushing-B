@@ -111,7 +111,7 @@ public class Deploy : MonoBehaviour
 
     private void spawn()
     {
-        if (obstacleCnt % 10 == 0 && obstacleCnt != 1 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
+        if (obstacleCnt % 10 == 0 && obstacleCnt != 0 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
         {
             spawnTeacher();
             obstacleCnt++;
@@ -141,7 +141,6 @@ public class Deploy : MonoBehaviour
 
     private void spawnTeacher()
     {
-        Debug.Log(teacherCnt);
         GameObject teacher = Instantiate(teachers[teacherCnt % 3]) as GameObject;
         teacher.transform.position = new Vector2(10, 0);
         teacherCnt++;

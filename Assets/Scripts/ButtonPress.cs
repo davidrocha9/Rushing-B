@@ -12,6 +12,7 @@ public class ButtonPress : MonoBehaviour
     public GameObject spawner;
     public AudioClip gameMusic;
     public AudioManager audioManager;
+    public GameObject pause;
     
     // Start is called before the first frame update
     void Start()

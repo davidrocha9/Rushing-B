@@ -14,6 +14,7 @@ public class TrashCan : MonoBehaviour
     bool increaseOpacity, secondPhase;
     SoundFXManager audioManager;
     public AudioClip warningMusic, deployMusic;
+    Pause pauseMenu;
     
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class TrashCan : MonoBehaviour
         increaseOpacity = false;
         secondPhase = false;
         audioManager = GameObject.FindGameObjectsWithTag("SoundFX")[0].GetComponent<SoundFXManager>();
+        pauseMenu = GameObject.FindGameObjectsWithTag("PauseMenu")[0].GetComponent<Pause>();
     }
 
     void animateWarning(GameObject warning)
@@ -56,6 +58,9 @@ public class TrashCan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (pauseMenu.isPaused())
+            return;
+        
         if (Time.time - spawnTime < 2.0f)
         {
             if (Time.time - spawnTime > 1.0f && !secondPhase && !warning.GetComponent<SpriteRenderer>().sprite.name.Contains("warning2"))

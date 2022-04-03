@@ -13,7 +13,6 @@ public class PlayerSoundManager : MonoBehaviour
     void Start()
     {
         animator = player.gameObject.GetComponent<Animator>();
-        Debug.Log(animator);
     }
 
     // Update is called once per frame

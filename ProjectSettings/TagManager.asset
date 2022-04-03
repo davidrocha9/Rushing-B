@@ -22,6 +22,8 @@ TagManager:
   - SoundFX
   - AISoundManager
   - CameraMovement
+  - Warning
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
