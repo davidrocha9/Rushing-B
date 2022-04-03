@@ -3626,6 +3626,7 @@ MonoBehaviour:
   coinFX: {fileID: 8300000, guid: e568f54ed370dd94cbce5617d562242b, type: 3}
   shockedFX: {fileID: 8300000, guid: 1842797f9cff717419b2f99c5f6f4ef0, type: 3}
   trashCanFX: {fileID: 8300000, guid: f1a9341a95d9ca44d81a65f0414caee0, type: 3}
+  doorFX: {fileID: 8300000, guid: 86ceb623e8b439246b52cdb877cb1851, type: 3}
   deadFX: {fileID: 8300000, guid: f096bf9f5c5076146810694e40f463ed, type: 3}
 --- !u!114 &917721222
 MonoBehaviour:
@@ -7429,6 +7430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62846defdde1be4aaf0e719f4c6b48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorPrefab: {fileID: 7443844271574406814, guid: c42f08c931c359347b5b562b53a34c77, type: 3}
   coinPrefab: {fileID: 8162473127120852983, guid: f409cc0b3a006154096c946283cbbf58, type: 3}
   maskPrefab: {fileID: 314790836853493770, guid: 8f9b93ff406d048429fccf48c5b0020f, type: 3}
   coffeePrefab: {fileID: 7183166856160386680, guid: 65ddf3b5c6e9929498d14ee5948d7c67, type: 3}

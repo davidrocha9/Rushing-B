@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public bool invincibility = false;
     public bool activatePower = false;
     public SoundFXManager audioManager;
-    public AudioClip coinFX, shockedFX, trashCanFX, deadFX;
+    public AudioClip coinFX, shockedFX, trashCanFX, doorFX, deadFX;
     Rigidbody2D rb;
     Animator animator;
 
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
             coffeeBuff = true;
             animator.SetBool("Aura", true);
             StartCoroutine(DisableCoffeeBuff());
-            scoreController.buyCoffe();
+            scoreController.buyCoffee();
             activatePower = false;
         }
     }
@@ -134,6 +134,28 @@ public class Player : MonoBehaviour
                     GameOverScreen.Setup();
                     animator.Play("Dead");
                 }
+            }
+            else if (other.gameObject.CompareTag("EnemyBullet"))
+            {
+                if (invincibility) {
+
+                }
+                else if (shield && !invincibility) {
+                    shield = false;
+                }
+                else {
+                    audioManager.playFX(deadFX, 0.15f);
+                    alive = false;
+                    DeleteAll();
+                    GameOverScreen.Setup();
+                    animator.Play("Dead");
+                }
+            }
+            else if (other.gameObject.CompareTag("Door"))
+            {
+                audioManager.playFX(doorFX, 0.25f);
+                ScoreController.instance.doorWarp();
+                Destroy(other.gameObject);
             }
         }
     }

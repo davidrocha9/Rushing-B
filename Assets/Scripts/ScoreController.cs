@@ -48,9 +48,23 @@ public class ScoreController : MonoBehaviour
         notebooks.text = notebooksCnt.ToString().PadLeft(2, '0');
     }
 
-    public void buyCoffe()
+    public void buyCoffee()
     {
         coinsCnt = Mathf.Round(0.50f * coinsCnt);
         coins.text = coinsCnt.ToString().PadLeft(3, '0');
+    }
+
+    public void doorWarp()
+    {
+        currentMeters += 200;
+        meters.text = currentMeters.ToString().PadLeft(4, '0');
+        meters.color = new Color32(80, 80, 255, 255);
+        StartCoroutine(animateMeters());
+    }
+
+    public IEnumerator animateMeters()
+    {
+        yield return new WaitForSeconds(1);
+        meters.color = new Color32(255, 255, 255, 255);
     }
 }

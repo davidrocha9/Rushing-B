@@ -11,11 +11,13 @@ enum Obstacles
   Notebooks,
   Coffees,
   Masks,
+  Doors
 }
 
 public class Deploy : MonoBehaviour
 {
     int obstacleCnt = 0;
+    public GameObject doorPrefab;
     public GameObject coinPrefab;
     public GameObject maskPrefab;
     public GameObject coffeePrefab;
@@ -105,6 +107,7 @@ public class Deploy : MonoBehaviour
         InvokeRepeating("spawnNotebook", 5.0f, 15.0f);
         InvokeRepeating("spawnCoffee", 2.0f, 4.0f);
         InvokeRepeating("spawnMask", 2.0f, 4.0f);
+        InvokeRepeating("spawnDoor", 2.0f, 4.0f);
 
         StartCoroutine(wave());
     }
@@ -152,12 +155,21 @@ public class Deploy : MonoBehaviour
         notebook.transform.position = new Vector2(10, 0);
     }
 
+    private void spawnDoor()
+    {
+        int doorSpawnChance = 10; // controls chance in percentage
+        if (Random.Range(0f, 100f) >= (100 - doorSpawnChance)) {
+            GameObject door = Instantiate(doorPrefab) as GameObject;
+            door.transform.position = new Vector2(10, -3.75f);
+        }
+    }
+
     private void spawnMask()
     {
-        int maskSpawnChance = 40; // controls chance in percentage
+        int maskSpawnChance = 100; // controls chance in percentage
         if (Random.Range(0f, 100f) >= (100 - maskSpawnChance)) {
             GameObject mask = Instantiate(maskPrefab) as GameObject;
-            mask.transform.position = new Vector2(10, Random.Range(-3.5f, 3.5f));
+            mask.transform.position = new Vector2(10, Random.Range(-1.5f, 3.5f));
         }
     }
 
@@ -167,7 +179,7 @@ public class Deploy : MonoBehaviour
         if (player.coffeeBuff) coffeeSpawnChance = 0;
         if (Random.Range(0f, 100f) >= (100 - coffeeSpawnChance)) {
             GameObject coffee = Instantiate(coffeePrefab) as GameObject;
-            coffee.transform.position = new Vector2(10, Random.Range(-2.5f, 2.5f));
+            coffee.transform.position = new Vector2(10, Random.Range(-2.5f, 1.5f));
         }
     }
 
@@ -410,6 +422,7 @@ public class Deploy : MonoBehaviour
             CancelInvoke("spawnNotebook");
             CancelInvoke("spawnCoffee");
             CancelInvoke("spawnMask");
+            CancelInvoke("spawnDoor");
         }
     }
 
