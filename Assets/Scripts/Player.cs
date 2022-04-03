@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         if (alive) {
             if (other.gameObject.CompareTag("Coins"))
             {
-                audioManager.playFX(coinFX, 0.15f);
+                audioManager.playFX(coinFX, 0.10f);
                 Destroy(other.gameObject);
                 ScoreController.instance.increaseCoins();
             }
