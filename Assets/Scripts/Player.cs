@@ -119,13 +119,21 @@ public class Player : MonoBehaviour
                 StartCoroutine(DisableCoffeeBuff());
 
             }
-            else if (other.gameObject.CompareTag("EnemyBullet") && !shield)
+            else if (other.gameObject.CompareTag("EnemyBullet"))
             {
-                audioManager.playFX(deadFX, 0.15f);
-                alive = false;
-                DeleteAll();
-                GameOverScreen.Setup();
-                animator.Play("Dead");
+                if (invincibility) {
+
+                }
+                else if (shield && !invincibility) {
+                    shield = false;
+                }
+                else {
+                    audioManager.playFX(deadFX, 0.15f);
+                    alive = false;
+                    DeleteAll();
+                    GameOverScreen.Setup();
+                    animator.Play("Dead");
+                }
             }
         }
     }

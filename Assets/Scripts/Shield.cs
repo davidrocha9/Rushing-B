@@ -32,7 +32,7 @@ public class Shield : MonoBehaviour
             shield = Instantiate(shieldPrefab) as GameObject;
             shield.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.2f);
         }
-        else if((!player.shield && active) || other.gameObject.CompareTag("EnemyBullet")) {
+        else if(!player.shield && active) {
             active = false;
             Destroy(shield);
         }
