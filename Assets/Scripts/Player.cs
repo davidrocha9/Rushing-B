@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(DisableCoffeeBuff());
 
             }
-            else if (other.gameObject.CompareTag("EnemyBullet"))
+            else if (other.gameObject.CompareTag("EnemyBullet") && !shield)
             {
                 audioManager.playFX(deadFX, 0.15f);
                 alive = false;

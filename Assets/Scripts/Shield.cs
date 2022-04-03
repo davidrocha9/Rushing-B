@@ -28,13 +28,11 @@ public class Shield : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(player.shield && !active) {
-            // TODO: activate shield sprite
             active = true;
             shield = Instantiate(shieldPrefab) as GameObject;
             shield.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.2f);
         }
-        else if(!player.shield && active) {
-            // TODO: deactivate shield sprite
+        else if((!player.shield && active) || other.gameObject.CompareTag("EnemyBullet")) {
             active = false;
             Destroy(shield);
         }
