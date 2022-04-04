@@ -28,7 +28,7 @@ public class InstructionsPress : MonoBehaviour
 
     void OnMouseDown() 
     {
-        animator.Play("Instruction_PressedDown");
+        animator.Play("Instruction_PressedDown", -1, 0f);
         parentAnimator.Play("OpenInstructions");
     }
 }

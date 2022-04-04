@@ -70,6 +70,7 @@ public class Pause : MonoBehaviour
 
     public void QuitGame()
     {
+        GameIsPaused = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

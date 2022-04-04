@@ -28,7 +28,7 @@ public class LeaderboardPress : MonoBehaviour
 
     void OnMouseDown() 
     {
-        animator.Play("LeaderBoard_PressedDown");
+        animator.Play("LeaderBoard_PressedDown", -1, 0f);
         parentAnimator.Play("OpenLeaderboard");
     }
 }

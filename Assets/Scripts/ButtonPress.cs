@@ -35,5 +35,6 @@ public class ButtonPress : MonoBehaviour
         audioManager.ChangeBackgroundMusic(gameMusic);
         game.SetActive(true);
         spawner.SetActive(true);
+        
     }
 }
