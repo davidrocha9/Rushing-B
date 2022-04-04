@@ -10,7 +10,7 @@ public class SaveScoreUI : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {        
         var scores = saveScoreManager.GetHighScores().ToArray();
         for (int i = 0; i < scores.Length; i++)
         {
