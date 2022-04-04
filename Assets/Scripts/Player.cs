@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public bool invincibility = false;
     public bool activatePower = false;
     public SoundFXManager audioManager;
-    public AudioClip coinFX, shockedFX, trashCanFX, doorFX, deadFX;
+    public AudioClip coinFX, shockedFX, trashCanFX, doorFX, deadFX, shieldFX, shieldBreakFX, coffeeFX;
     Rigidbody2D rb;
     Animator animator;
 
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         if (alive) {
             if (other.gameObject.CompareTag("Coins"))
             {
-                audioManager.playFX(coinFX, 0.10f);
+                audioManager.playFX(coinFX, 0.15f);
                 Destroy(other.gameObject);
                 ScoreController.instance.increaseCoins();
             }
@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
             {
                 Destroy(other.gameObject);
                 shield = true;
+                audioManager.playFX(shieldFX, 0.25f);
             }
             else if (other.gameObject.CompareTag("TrashCan"))
             {
@@ -86,6 +87,7 @@ public class Player : MonoBehaviour
                 }
                 else if (shield && !invincibility) {
                     shield = false;
+                    audioManager.playFX(shieldBreakFX, 0.25f);
                 }
                 else {
                     audioManager.playFX(trashCanFX, 0.15f);
@@ -102,6 +104,7 @@ public class Player : MonoBehaviour
                 }
                 else if (shield && !invincibility) {
                     shield = false;
+                    audioManager.playFX(shieldBreakFX, 0.25f);
                 }
                 else {
                     audioManager.playFX(shockedFX, 0.15f);
@@ -114,6 +117,7 @@ public class Player : MonoBehaviour
             else if (other.gameObject.CompareTag("Coffee"))
             {
                 animator.SetBool("Aura", true);
+                audioManager.playFX(coffeeFX, 0.25f);
                 Destroy(other.gameObject);
                 coffeeBuff = true;
                 StartCoroutine(DisableCoffeeBuff());
@@ -126,6 +130,7 @@ public class Player : MonoBehaviour
                 }
                 else if (shield && !invincibility) {
                     shield = false;
+                    audioManager.playFX(shieldBreakFX, 0.25f);
                 }
                 else {
                     audioManager.playFX(deadFX, 0.15f);
@@ -142,6 +147,7 @@ public class Player : MonoBehaviour
                 }
                 else if (shield && !invincibility) {
                     shield = false;
+                    audioManager.playFX(shieldBreakFX, 0.25f);
                 }
                 else {
                     audioManager.playFX(deadFX, 0.15f);
@@ -153,7 +159,7 @@ public class Player : MonoBehaviour
             }
             else if (other.gameObject.CompareTag("Door"))
             {
-                audioManager.playFX(doorFX, 0.25f);
+                audioManager.playFX(doorFX, 0.5f);
                 ScoreController.instance.doorWarp();
                 Destroy(other.gameObject);
             }
