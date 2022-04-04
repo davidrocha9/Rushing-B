@@ -3628,6 +3628,9 @@ MonoBehaviour:
   trashCanFX: {fileID: 8300000, guid: f1a9341a95d9ca44d81a65f0414caee0, type: 3}
   doorFX: {fileID: 8300000, guid: 86ceb623e8b439246b52cdb877cb1851, type: 3}
   deadFX: {fileID: 8300000, guid: f096bf9f5c5076146810694e40f463ed, type: 3}
+  shieldFX: {fileID: 8300000, guid: 51e14a9576a413c4bbf071fb7b541f1d, type: 3}
+  shieldBreakFX: {fileID: 8300000, guid: 67d011fb509516541b9bfdc720e117ff, type: 3}
+  coffeeFX: {fileID: 8300000, guid: 6b9bf9d34b03ed04a981546ed3d9f8f4, type: 3}
 --- !u!114 &917721222
 MonoBehaviour:
   m_ObjectHideFlags: 0

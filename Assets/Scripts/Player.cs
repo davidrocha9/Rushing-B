@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
             }
             else if (other.gameObject.CompareTag("Door"))
             {
-                audioManager.playFX(doorFX, 0.5f);
+                audioManager.playFX(doorFX, 10.5f);
                 ScoreController.instance.doorWarp();
                 Destroy(other.gameObject);
             }
