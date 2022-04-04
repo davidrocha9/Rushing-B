@@ -162,6 +162,7 @@ public class Player : MonoBehaviour
                 audioManager.playFX(doorFX, 10.5f);
                 ScoreController.instance.doorWarp();
                 Destroy(other.gameObject);
+                DoorSkipDelete();
             }
         }
     }
@@ -170,8 +171,20 @@ public class Player : MonoBehaviour
     {
         foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
         {
-            if (o.CompareTag("TrashCan") || o.CompareTag("Mask") || o.CompareTag("Notebook") ||
-            o.CompareTag("Coins") || o.CompareTag("Teacher") || o.CompareTag("Stats") || o.CompareTag("Warning"))
+            if (o.CompareTag("TrashCan") || o.CompareTag("Mask") || o.CompareTag("Notebook") || o.CompareTag("Coins") || o.CompareTag("Teacher")
+            || o.CompareTag("Stats") || o.CompareTag("Warning") || o.CompareTag("LightBulb") || o.CompareTag("LightBulbInverted") || o.CompareTag("Door"))
+            {
+                Destroy(o);
+            }
+        }
+    }
+
+    public void DoorSkipDelete()
+    {
+        foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
+        {
+            if (o.CompareTag("TrashCan") || o.CompareTag("Mask") || o.CompareTag("Notebook") || o.CompareTag("Coins")
+            || o.CompareTag("Warning") || o.CompareTag("LightBulb") || o.CompareTag("LightBulbInverted"))
             {
                 Destroy(o);
             }

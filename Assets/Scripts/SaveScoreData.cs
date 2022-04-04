@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization.Formatters;
+using System;
 
-public class AISoundManager : MonoBehaviour
+[Serializable]
+public class SaveScoreData
 {
-    public AudioSource fxMusic;
+    public List<SaveScore> scores;
+
+    public SaveScoreData()
+    {
+        this.scores = new List<SaveScore>();
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -16,10 +24,5 @@ public class AISoundManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void playFX(AudioClip music, float volume) {
-        fxMusic.volume = volume;
-        fxMusic.PlayOneShot(music);
     }
 }

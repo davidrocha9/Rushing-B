@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
   public float frequency = 10f;
   public float magnitude = 1f;
   public float offset = 0f;
+  int speed = 7;
 
   // Start is called before the first frame update
   void Start()
@@ -23,7 +24,8 @@ public class Door : MonoBehaviour
       Destroy(this.gameObject);
     }
     _startPosition.x = _startPosition.x - Time.deltaTime * 5;
-    transform.position = _startPosition + transform.up * 0;
+    //transform.position = _startPosition + transform.up * 0;
+    transform.Translate(Vector3.left*speed*Time.deltaTime);
   }
 
   private void OnTriggerEnter2D(Collider2D other)
