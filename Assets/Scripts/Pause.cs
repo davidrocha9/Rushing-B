@@ -17,7 +17,6 @@ public class Pause : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("comecou");
         animator = gameObject.GetComponent<Animator>();
     }
 
