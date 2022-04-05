@@ -161,7 +161,7 @@ public class Deploy : MonoBehaviour
 
     private void spawnDoor()
     {
-        int doorSpawnChance = 100; // controls chance in percentage
+        int doorSpawnChance = 30; // controls chance in percentage
         if (Random.Range(0f, 100f) >= (100 - doorSpawnChance)) {
             GameObject door = Instantiate(doorPrefab) as GameObject;
             door.transform.position = new Vector2(10, Random.Range(-3f, 3f));

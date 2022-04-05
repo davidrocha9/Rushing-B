@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
             {
                 animatingWarp = false;
                 animatingCnt = 0;
+                rb.gravityScale = 2;
                 spawner.gameObject.SetActive(true);
                 scoreController.gameObject.SetActive(true);
                 scoreController.animateMeters();
@@ -228,6 +229,7 @@ public class Player : MonoBehaviour
         spawner.deactivate();
         rb.gravityScale = 0;
         scoreController.gameObject.SetActive(false);
+        rb.gravityScale = 0;
         animatingWarp = true;
     }
     
