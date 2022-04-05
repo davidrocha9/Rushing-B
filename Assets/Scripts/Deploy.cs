@@ -31,6 +31,7 @@ public class Deploy : MonoBehaviour
     private Vector2 screenBounds;
     private List<Obstacles> obstacles = new List<Obstacles>();
     private static System.Timers.Timer aTimer;
+    public bool doorWarping = false;
 
     private void QuickSort(int[] arr, int start, int end)
     {
@@ -104,17 +105,17 @@ public class Deploy : MonoBehaviour
         }
 
         InvokeRepeating("spawnTrashCans", 2.0f, 7.0f);
-        InvokeRepeating("spawnNotebook", 5.0f, 15.0f);
-        InvokeRepeating("spawnCoffee", 2.0f, 4.0f);
-        InvokeRepeating("spawnMask", 2.0f, 4.0f);
-        InvokeRepeating("spawnDoor", 2.0f, 4.0f);
+        InvokeRepeating("spawnNotebook", 5.0f, 30.0f);
+        InvokeRepeating("spawnCoffee", 5.0f, 10.0f);
+        InvokeRepeating("spawnMask", 5.0f, 10.0f);
+        InvokeRepeating("spawnDoor", 5.0f, 30.0f);
 
         StartCoroutine(wave());
     }
 
     private void spawn()
     {
-        if (obstacleCnt % 10 == 0 && obstacleCnt != 0 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
+        if (obstacleCnt % 30 == 0 && obstacleCnt != 0 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
         {
             spawnTeacher();
             obstacleCnt++;
@@ -151,8 +152,11 @@ public class Deploy : MonoBehaviour
 
     private void spawnNotebook()
     {
-        GameObject notebook = Instantiate(notebookPrefab) as GameObject;
-        notebook.transform.position = new Vector2(10, 0);
+        int notebookSpawnChance = 40; // controls chance in percentage
+        if (Random.Range(0f, 100f) >= (100 - notebookSpawnChance)) {
+            GameObject notebook = Instantiate(notebookPrefab) as GameObject;
+            notebook.transform.position = new Vector2(10, 0);
+        }
     }
 
     private void spawnDoor()
@@ -160,13 +164,13 @@ public class Deploy : MonoBehaviour
         int doorSpawnChance = 100; // controls chance in percentage
         if (Random.Range(0f, 100f) >= (100 - doorSpawnChance)) {
             GameObject door = Instantiate(doorPrefab) as GameObject;
-            door.transform.position = new Vector2(10, -3);
+            door.transform.position = new Vector2(10, Random.Range(-3f, 3f));
         }
     }
 
     private void spawnMask()
     {
-        int maskSpawnChance = 100; // controls chance in percentage
+        int maskSpawnChance = 20; // controls chance in percentage
         if (Random.Range(0f, 100f) >= (100 - maskSpawnChance)) {
             GameObject mask = Instantiate(maskPrefab) as GameObject;
             mask.transform.position = new Vector2(10, Random.Range(-1.5f, 3.5f));
@@ -426,10 +430,32 @@ public class Deploy : MonoBehaviour
         }
     }
 
+    public void deactivate()
+    {
+        CancelInvoke("spawnTrashCans");
+        CancelInvoke("spawnNotebook");
+        CancelInvoke("spawnCoffee");
+        CancelInvoke("spawnMask");
+        CancelInvoke("spawnDoor");
+        doorWarping = true;
+    }
+
+    public void reactivate()
+    {
+        InvokeRepeating("spawnTrashCans", 2.0f, 7.0f);
+        InvokeRepeating("spawnNotebook", 5.0f, 30.0f);
+        InvokeRepeating("spawnCoffee", 5.0f, 10.0f);
+        InvokeRepeating("spawnMask", 5.0f, 10.0f);
+        InvokeRepeating("spawnDoor", 5.0f, 30.0f);
+        doorWarping = false;
+    }
+
     IEnumerator wave() 
     {
         while(true) {
             yield return new WaitForSeconds(2);
+            while(doorWarping)
+                yield return new WaitForSeconds(0.2f);
             if (!player.alive) break;
             spawn();
         }

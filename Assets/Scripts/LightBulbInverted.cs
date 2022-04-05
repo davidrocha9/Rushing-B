@@ -24,6 +24,7 @@ public class LightBulbInverted : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speed = cameraMovement.speed;
         if (player.alive)
         {
             transform.Translate(Vector3.right*speed*Time.deltaTime);

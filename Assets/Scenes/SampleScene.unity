@@ -4355,6 +4355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOverScreen: {fileID: 1749149538}
   scoreController: {fileID: 1389381143}
+  spawner: {fileID: 1986730676}
   alive: 1
   shield: 0
   coffeeBuff: 0
@@ -4491,6 +4492,7 @@ GameObject:
   - component: {fileID: 993390665}
   - component: {fileID: 993390668}
   - component: {fileID: 993390667}
+  - component: {fileID: 993390669}
   m_Layer: 0
   m_Name: Background
   m_TagString: CameraMovement
@@ -4561,6 +4563,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   player: {fileID: 917721221}
   gameStarted: {fileID: 1190319515}
+  meters: {fileID: 115920959}
 --- !u!212 &993390668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4612,6 +4615,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &993390669
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993390664}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2540d8aa00cb16f45b963d5f8a0bc8fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1088086402
 GameObject:
   m_ObjectHideFlags: 0
@@ -6301,6 +6323,7 @@ MonoBehaviour:
   coins: {fileID: 829023792}
   notebooks: {fileID: 1267473036}
   pauseMenu: {fileID: 1222221861}
+  speed: 0
 --- !u!4 &1389381144
 Transform:
   m_ObjectHideFlags: 0
@@ -9228,6 +9251,7 @@ MonoBehaviour:
   - {fileID: 1089641029550891385, guid: cbf7a37ec104b9043a00b34d1a193e75, type: 3}
   - {fileID: 8028540060311671726, guid: f063c796ed2d9f843999a16c5b421d54, type: 3}
   player: {fileID: 917721221}
+  doorWarping: 0
 --- !u!4 &1986730677
 Transform:
   m_ObjectHideFlags: 0

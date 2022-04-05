@@ -15,6 +15,8 @@ public class TrashCan : MonoBehaviour
     SoundFXManager audioManager;
     public AudioClip warningMusic, deployMusic;
     Pause pauseMenu;
+    CameraMovement cameraMovement;
+    float speed;
     
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,8 @@ public class TrashCan : MonoBehaviour
         secondPhase = false;
         audioManager = GameObject.FindGameObjectsWithTag("SoundFX")[0].GetComponent<SoundFXManager>();
         pauseMenu = GameObject.FindGameObjectsWithTag("PauseMenu")[0].GetComponent<Pause>();
+        cameraMovement = GameObject.FindGameObjectsWithTag("CameraMovement")[0].GetComponent<CameraMovement>();
+        speed = cameraMovement.speed * 2.43f;
     }
 
     void animateWarning(GameObject warning)
@@ -93,7 +97,7 @@ public class TrashCan : MonoBehaviour
             }
             rotation += 5;
             transform.localRotation = Quaternion.Euler(0, 0, rotation);
-            transform.Translate(Vector3.left*17*Time.deltaTime,Space.World);
+            transform.Translate(Vector3.left*speed*Time.deltaTime,Space.World);
         }
     }
 

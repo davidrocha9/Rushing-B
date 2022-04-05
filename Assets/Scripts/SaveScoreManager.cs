@@ -32,7 +32,6 @@ public class SaveScoreManager : MonoBehaviour
     public void SaveScore()
     {
         var json = JsonUtility.ToJson(sd);
-        Debug.Log(json);
         PlayerPrefs.SetString("scores", json);
     }
 }

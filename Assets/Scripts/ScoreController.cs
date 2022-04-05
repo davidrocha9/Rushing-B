@@ -11,7 +11,10 @@ public class ScoreController : MonoBehaviour
     public TextMeshProUGUI notebooks;
     public GameObject pauseMenu;
     float coinsCnt = 0, notebooksCnt = 0, currentMeters = 0, incrementMetersCounter = 0;
-    
+    int updateVal;
+    CameraMovement cameraMovement;
+    public float speed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,9 @@ public class ScoreController : MonoBehaviour
         {
             instance = this;
         }
+
+        cameraMovement = GameObject.FindGameObjectsWithTag("CameraMovement")[0].GetComponent<CameraMovement>();
+        speed = cameraMovement.speed;
     }
 
     void Update()
@@ -26,9 +32,16 @@ public class ScoreController : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
-        incrementMetersCounter += 1;
-        if (incrementMetersCounter > 10)
+    {        
+        speed = cameraMovement.speed;
+        incrementMetersCounter += 1 + speed/7.0f;
+        
+        if (GameObject.FindGameObjectsWithTag("Teacher").Length > 0)
+            updateVal = 50;
+        else
+            updateVal = 10;
+
+        if (incrementMetersCounter > updateVal)
         {
             currentMeters += 1;
             meters.text = currentMeters.ToString().PadLeft(4, '0');
@@ -59,12 +72,27 @@ public class ScoreController : MonoBehaviour
         currentMeters += 200;
         meters.text = currentMeters.ToString().PadLeft(4, '0');
         meters.color = new Color32(80, 80, 255, 255);
-        StartCoroutine(animateMeters());
+        
+        float targetMeters = 0;
+        float incrementMetersCounterAux = 0;
+        while (targetMeters < 200)
+        {
+            speed += Time.deltaTime * 0.05f;
+            incrementMetersCounterAux += 1 + speed/7.0f;
+            updateVal = 10;
+
+            if (incrementMetersCounterAux > updateVal)
+            {
+                targetMeters += 1;
+                incrementMetersCounterAux = 0;
+            }
+        }
+
+        cameraMovement.speed = speed;
     }
 
-    public IEnumerator animateMeters()
+    public void animateMeters()
     {
-        yield return new WaitForSeconds(1);
         meters.color = new Color32(255, 255, 255, 255);
     }
 }

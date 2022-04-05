@@ -32,7 +32,7 @@ public class AIJetpack : MonoBehaviour
         audioManager = GameObject.FindGameObjectsWithTag("AISoundManager")[0].GetComponent<AISoundManager>();
         slider.value = 100;
         fill.color = gradient.Evaluate(slider.normalizedValue);
-        statsAnimator.Play("TeacherStats_FadeIn", -1, 0f);
+        statsAnimator.Play("TeacherStats_FadeIn");
         spriteR = gameObject.GetComponent<SpriteRenderer>();
         audioManager.playFX(jetpackFX, 0.25f);
     }

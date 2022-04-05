@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public static Player instance;
     public GameOverScreen GameOverScreen;
     public ScoreController scoreController;
+    public Deploy spawner;
     public bool alive = true;
     public bool shield = false;
     public bool coffeeBuff = false;
@@ -17,7 +18,10 @@ public class Player : MonoBehaviour
     public AudioClip coinFX, shockedFX, trashCanFX, doorFX, deadFX, shieldFX, shieldBreakFX, coffeeFX;
     Rigidbody2D rb;
     Animator animator;
-
+    bool animatingWarp;
+    int animatingCnt, animatingFrames;
+    CameraMovement cameraMovement;
+    float speed;
 
     void animateCoins()
     {
@@ -41,6 +45,10 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         InvokeRepeating("animateCoins", 20.0f, 0.5f);
+        animatingWarp = false;
+        animatingCnt = 0;
+        cameraMovement = GameObject.FindGameObjectsWithTag("CameraMovement")[0].GetComponent<CameraMovement>();
+        speed = cameraMovement.speed;
     }
 
     // Update is called once per frame
@@ -58,6 +66,26 @@ public class Player : MonoBehaviour
             scoreController.buyCoffee();
             activatePower = false;
         }
+
+        if (animatingWarp)
+        {
+            if (animatingCnt > 100 && animatingCnt < 200)
+            {
+                cameraMovement.speed -= (100-scoreController.speed)/100;
+            }
+            animatingCnt++;
+
+            if (animatingCnt > 200)
+            {
+                animatingWarp = false;
+                animatingCnt = 0;
+                spawner.gameObject.SetActive(true);
+                scoreController.gameObject.SetActive(true);
+                scoreController.animateMeters();
+                spawner.reactivate();
+            }
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -160,9 +188,11 @@ public class Player : MonoBehaviour
             else if (other.gameObject.CompareTag("Door"))
             {
                 audioManager.playFX(doorFX, 10.5f);
+                
                 ScoreController.instance.doorWarp();
                 Destroy(other.gameObject);
-                DoorSkipDelete();
+                animateDoorWarp();
+                cameraMovement.speed = 100;
             }
         }
     }
@@ -171,7 +201,7 @@ public class Player : MonoBehaviour
     {
         foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
         {
-            if (o.CompareTag("TrashCan") || o.CompareTag("Mask") || o.CompareTag("Notebook") || o.CompareTag("Coins") || o.CompareTag("Teacher")
+            if (o.CompareTag("TrashCan") || o.CompareTag("Mask") || o.CompareTag("Notebook") || o.CompareTag("Coins") || o.CompareTag("Teacher") || o.CompareTag("Coffee")
             || o.CompareTag("Stats") || o.CompareTag("Warning") || o.CompareTag("LightBulb") || o.CompareTag("LightBulbInverted") || o.CompareTag("Door"))
             {
                 Destroy(o);
@@ -183,7 +213,7 @@ public class Player : MonoBehaviour
     {
         foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
         {
-            if (o.CompareTag("TrashCan") || o.CompareTag("Mask") || o.CompareTag("Notebook") || o.CompareTag("Coins")
+            if (o.CompareTag("TrashCan") || o.CompareTag("Mask") || o.CompareTag("Notebook") || o.CompareTag("Coins") || o.CompareTag("Coffee")
             || o.CompareTag("Warning") || o.CompareTag("LightBulb") || o.CompareTag("LightBulbInverted"))
             {
                 Destroy(o);
@@ -191,6 +221,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    void animateDoorWarp()
+    {
+        DoorSkipDelete();
+        spawner.deactivate();
+        scoreController.gameObject.SetActive(false);
+        animatingWarp = true;
+    }
+    
     IEnumerator DisableCoffeeBuff()
     {
         yield return new WaitForSeconds(10);

@@ -10,6 +10,7 @@ public class Shield : MonoBehaviour
     GameObject shield;
     public GameObject shieldPrefab;
     public static bool active = false;
+    bool destroyed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,18 +24,32 @@ public class Shield : MonoBehaviour
     void Update()
     {
         if(shield != null) shield.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.2f);
+
+        if (destroyed && shield != null)
+        {
+            if (shield.GetComponent<SpriteRenderer>().color.a > 0)
+            {
+                shield.transform.localScale += new Vector3(0.1f, 0.1f, 0);
+                shield.GetComponent<SpriteRenderer>().color -= new Color(0f,0f,0f,0.05f);
+            }
+            else
+            {
+                Destroy(shield);
+            }
+        }
     }
    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(player.shield && !active) {
             active = true;
+            destroyed = false;
             shield = Instantiate(shieldPrefab) as GameObject;
             shield.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.2f);
         }
         else if(!player.shield && active) {
             active = false;
-            Destroy(shield);
+            destroyed = true;
         }
     }
 }

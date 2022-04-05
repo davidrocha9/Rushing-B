@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CameraMovement : MonoBehaviour
     public Vector3 startPos;
     public Player player;
     public GameObject gameStarted;
+    public TextMeshProUGUI meters;
 
     // Start is called before the first frame update
     void Start()
@@ -15,17 +17,14 @@ public class CameraMovement : MonoBehaviour
         Application.targetFrameRate = 300;
         startPos = transform.position;
         initSpeed = speed;
-        
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {    
         if (gameStarted.activeInHierarchy)
-        {
-            speed += 0.00005f;
-        }
-        
+            speed += Time.deltaTime * 0.05f;
+
         if (player.alive)
         {
             transform.Translate(Vector3.left*speed*Time.deltaTime);

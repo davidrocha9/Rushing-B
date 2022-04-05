@@ -8,17 +8,21 @@ public class Door : MonoBehaviour
   public float frequency = 10f;
   public float magnitude = 1f;
   public float offset = 0f;
-  int speed = 7;
+  float speed;
+  CameraMovement cameraMovement;
 
   // Start is called before the first frame update
   void Start()
   {
     _startPosition = transform.position;
+    cameraMovement = GameObject.FindGameObjectsWithTag("CameraMovement")[0].GetComponent<CameraMovement>();
+    speed = cameraMovement.speed;
   }
 
   // Update is called once per frame
   void Update()
   {
+    speed = cameraMovement.speed;
     if (transform.position.x < -10) 
     {
       Destroy(this.gameObject);
