@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public AudioClip coinFX, shockedFX, trashCanFX, doorFX, deadFX, shieldFX, shieldBreakFX, coffeeFX;
     Rigidbody2D rb;
     Animator animator;
-    bool animatingWarp;
+    public bool animatingWarp;
     int animatingCnt, animatingFrames;
     CameraMovement cameraMovement;
     float speed;
@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
                 scoreController.gameObject.SetActive(true);
                 scoreController.animateMeters();
                 spawner.reactivate();
+                rb.gravityScale = 2;
             }
         }
 
@@ -225,6 +226,7 @@ public class Player : MonoBehaviour
     {
         DoorSkipDelete();
         spawner.deactivate();
+        rb.gravityScale = 0;
         scoreController.gameObject.SetActive(false);
         animatingWarp = true;
     }

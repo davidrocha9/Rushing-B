@@ -31,7 +31,6 @@ public class AIWeapon : MonoBehaviour
     {
         if (Time.time - startTime > 10)
         {
-            Debug.Log("mais rapido");
             freq = freq/2;
             CancelInvoke("Shoot");
             InvokeRepeating("Shoot", 0.0f, freq);

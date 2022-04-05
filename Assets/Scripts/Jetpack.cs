@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Jetpack : MonoBehaviour
 {
@@ -26,7 +27,9 @@ public class Jetpack : MonoBehaviour
     void FixedUpdate()
     {
         animator.SetFloat("Height", transform.position.y);
-        if (player.alive && spawner.activeInHierarchy)
+        if (player.animatingWarp)
+            rb.velocity = new Vector2(0,0);
+        if (player.alive && spawner.activeInHierarchy && !player.animatingWarp)
         {
             if (Input.GetKey("up"))
             {
