@@ -453,7 +453,6 @@ public class Deploy : MonoBehaviour
         }
         else if (cameraMovement.speed > 10 && cameraMovement.speed < 10.001)
         {
-            Debug.Log(cameraMovement.speed);
             adjustSpawnRate(6.0f);
         }
     }

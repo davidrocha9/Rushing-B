@@ -202,7 +202,6 @@ public class Player : MonoBehaviour
             }
             else if (other.gameObject.CompareTag("Door"))
             {
-                Debug.Log("goods");
                 audioManager.playFX(doorFX);
                 
                 ScoreController.instance.doorWarp();
