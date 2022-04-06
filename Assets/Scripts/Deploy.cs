@@ -107,7 +107,7 @@ public class Deploy : MonoBehaviour
             temp[x] = obstacles[arr[x]];
         }
 
-        // InvokeRepeating("spawnTrashCans", 2.0f, 7.0f);
+        InvokeRepeating("spawnTrashCans", 2.0f, 7.0f);
 
         // keep invokes in this order
         InvokeRepeating("resetSpawns", 2.0f, 7.0f);
@@ -123,7 +123,7 @@ public class Deploy : MonoBehaviour
     {
         if (obstacleCnt % 30 == 0 && obstacleCnt != 0 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
         {
-            // spawnTeacher();
+            spawnTeacher();
             obstacleCnt++;
             return;
         }
@@ -140,7 +140,7 @@ public class Deploy : MonoBehaviour
                 spawnCoins();
                 break;
             case Obstacles.LightBulbs:
-                // spawnLightBulbs();
+                spawnLightBulbs();
                 break;
             default:
                 break;
