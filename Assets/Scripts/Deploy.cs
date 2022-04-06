@@ -32,7 +32,7 @@ public class Deploy : MonoBehaviour
     private Vector2 screenBounds;
     private List<Obstacles> obstacles = new List<Obstacles>();
     private static System.Timers.Timer aTimer;
-    public bool doorWarping = false, teacherFight = false;
+    public bool collectibleSpawned = false, doorWarping = false, teacherFight = false;
     public int freq;
     public CameraMovement cameraMovement;
 
@@ -107,11 +107,14 @@ public class Deploy : MonoBehaviour
             temp[x] = obstacles[arr[x]];
         }
 
-        InvokeRepeating("spawnTrashCans", 2.0f, 7.0f);
-        InvokeRepeating("spawnNotebook", 5.0f, 30.0f);
-        InvokeRepeating("spawnCoffee", 5.0f, 10.0f);
-        InvokeRepeating("spawnMask", 5.0f, 10.0f);
-        InvokeRepeating("spawnDoor", 5.0f, 30.0f);
+        // InvokeRepeating("spawnTrashCans", 2.0f, 7.0f);
+
+        // keep invokes in this order
+        InvokeRepeating("resetSpawns", 2.0f, 7.0f);
+        InvokeRepeating("spawnMask", 2.0f, 7.0f);
+        InvokeRepeating("spawnCoffee", 2.0f, 7.0f);
+        InvokeRepeating("spawnDoor", 2.0f, 7.0f);
+        InvokeRepeating("spawnNotebook", 2.0f, 7.0f);
 
         StartCoroutine(wave());
     }
@@ -120,7 +123,7 @@ public class Deploy : MonoBehaviour
     {
         if (obstacleCnt % 30 == 0 && obstacleCnt != 0 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
         {
-            spawnTeacher();
+            // spawnTeacher();
             obstacleCnt++;
             return;
         }
@@ -137,7 +140,7 @@ public class Deploy : MonoBehaviour
                 spawnCoins();
                 break;
             case Obstacles.LightBulbs:
-                spawnLightBulbs();
+                // spawnLightBulbs();
                 break;
             default:
                 break;
@@ -156,11 +159,9 @@ public class Deploy : MonoBehaviour
 
     private void spawnNotebook()
     {
-        if (teacherFight)
-            return;
-        
-        int notebookSpawnChance = 40; // controls chance in percentage
-        if (Random.Range(0f, 100f) >= (100 - notebookSpawnChance)) {
+        if (teacherFight || collectibleSpawned) return;
+        else if (Random.Range(0f, 100f) <= 15) {
+            collectibleSpawned = true;
             GameObject notebook = Instantiate(notebookPrefab) as GameObject;
             notebook.transform.position = new Vector2(10, 0);
         }
@@ -168,12 +169,9 @@ public class Deploy : MonoBehaviour
 
     private void spawnDoor()
     {
-        Debug.Log(Time.time);
-        if (teacherFight)
-            return;
-        
-        int doorSpawnChance = 100; // controls chance in percentage
-        if (Random.Range(0f, 100f) >= (100 - doorSpawnChance)) {
+        if (teacherFight || collectibleSpawned) return;
+        else if (Random.Range(0f, 100f) <= 25) {
+            collectibleSpawned = true;
             GameObject door = Instantiate(doorPrefab) as GameObject;
             door.transform.position = new Vector2(10, Random.Range(-3f, 3f));
         }
@@ -181,11 +179,9 @@ public class Deploy : MonoBehaviour
 
     private void spawnMask()
     {
-        if (teacherFight)
-            return;
-        
-        int maskSpawnChance = 20; // controls chance in percentage
-        if (Random.Range(0f, 100f) >= (100 - maskSpawnChance)) {
+        if (teacherFight || collectibleSpawned || player.shield) return;
+        else if (Random.Range(0f, 100f) <= 75) {
+            collectibleSpawned = true;
             GameObject mask = Instantiate(maskPrefab) as GameObject;
             mask.transform.position = new Vector2(10, Random.Range(-1.5f, 3.5f));
         }
@@ -193,15 +189,17 @@ public class Deploy : MonoBehaviour
 
     private void spawnCoffee()
     {
-        if (teacherFight)
-            return;
-        
-        int coffeeSpawnChance = 100; // controls chance in percentage
-        if (player.coffeeBuff) coffeeSpawnChance = 0;
-        if (Random.Range(0f, 100f) >= (100 - coffeeSpawnChance)) {
+        if (teacherFight || collectibleSpawned || player.coffeeBuff) return;
+        else if (Random.Range(0f, 100f) <= 50) {
+            collectibleSpawned = true;
             GameObject coffee = Instantiate(coffeePrefab) as GameObject;
             coffee.transform.position = new Vector2(10, Random.Range(-2.5f, 1.5f));
         }
+    }
+
+    public void resetSpawns()
+    {
+        collectibleSpawned = false;
     }
 
     private void spawnCoins()
