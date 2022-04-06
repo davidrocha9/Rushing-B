@@ -10026,6 +10026,7 @@ MonoBehaviour:
   - {fileID: 8028540060311671726, guid: f063c796ed2d9f843999a16c5b421d54, type: 3}
   cost: {fileID: 1304842273}
   player: {fileID: 917721221}
+  collectibleSpawned: 0
   doorWarping: 0
   teacherFight: 0
   freq: 0
