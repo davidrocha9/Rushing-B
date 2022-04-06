@@ -40,4 +40,4 @@ Calculated based on the distance covered, coins and notebooks collected until th
 
 ## Instructions
 
-Press the `up arrow` key to fly and the `space` key to shoot. Collect as many coins and notebooks as possible!
+Press the `up arrow` key to fly, the `space` key to shoot and `ESC` to pause the game. When in a boss fight, you can press `c` to activate a powerup. Collect as many coins and notebooks as possible!
