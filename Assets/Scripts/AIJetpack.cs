@@ -18,7 +18,10 @@ public class AIJetpack : MonoBehaviour
     public SpriteRenderer spriteR;
     bool alive = true;
     AISoundManager audioManager;
+    Deploy spawner;
     public AudioClip jetpackFX, hitFX, deadFX;
+    CameraMovement cameraMovement;
+    float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,7 @@ public class AIJetpack : MonoBehaviour
         animator = GetComponent<Animator>();
         _startPosition = transform.position;
         statsAnimator = GameObject.FindGameObjectsWithTag("Stats")[0].GetComponent<Animator>();
+        spawner = GameObject.FindGameObjectsWithTag("Spawner")[0].GetComponent<Deploy>();
         slider = GameObject.FindGameObjectsWithTag("HealthBar")[0].GetComponent<Slider>();
         fill = GameObject.FindGameObjectsWithTag("Fill")[0].GetComponent<Image>();
         audioManager = GameObject.FindGameObjectsWithTag("AISoundManager")[0].GetComponent<AISoundManager>();
@@ -34,13 +38,15 @@ public class AIJetpack : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
         statsAnimator.Play("TeacherStats_FadeIn");
         spriteR = gameObject.GetComponent<SpriteRenderer>();
-        audioManager.playFX(jetpackFX, 0.25f);
+        cameraMovement = GameObject.FindGameObjectsWithTag("CameraMovement")[0].GetComponent<CameraMovement>();
+        speed = cameraMovement.speed;
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        speed = cameraMovement.speed;
         if (alive)
         {
             if (transform.position.x > 7.5)
@@ -51,7 +57,7 @@ public class AIJetpack : MonoBehaviour
         }
         else
         {
-            transform.Translate(Vector3.left*7*Time.deltaTime);
+            transform.Translate(Vector3.left*speed*Time.deltaTime);
             if(transform.position.x < -11)
             {
                 Destroy(this.gameObject);
@@ -70,7 +76,9 @@ public class AIJetpack : MonoBehaviour
             fill.color = gradient.Evaluate(slider.normalizedValue);
             if (slider.value == 0)
             {
-                audioManager.playFX(deadFX, 0.15f);
+                spawner.teacherFight = false;
+                gameObject.layer = 9;
+                audioManager.playFX(deadFX);
                 statsAnimator.Play("TeacherStats_FadeOut");
                 if (spriteR.sprite.name.Contains("teacher1"))
                 {
@@ -90,7 +98,7 @@ public class AIJetpack : MonoBehaviour
             }
             else
             {
-                audioManager.playFX(hitFX, 0.15f);
+                audioManager.playFX(hitFX);
             }
         }
     }

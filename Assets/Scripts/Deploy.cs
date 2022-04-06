@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 enum Obstacles 
 {
@@ -16,7 +17,7 @@ enum Obstacles
 
 public class Deploy : MonoBehaviour
 {
-    int obstacleCnt = 0;
+    int obstacleCnt = 0, teacherCnt = 0;
     public GameObject doorPrefab;
     public GameObject coinPrefab;
     public GameObject maskPrefab;
@@ -26,12 +27,14 @@ public class Deploy : MonoBehaviour
     public GameObject lightBulbPrefab;
     public GameObject lightBulbInvertedPrefab;
     public List<GameObject> teachers;
-    int teacherCnt = 0;
+    public TextMeshProUGUI cost;
     public Player player;
     private Vector2 screenBounds;
     private List<Obstacles> obstacles = new List<Obstacles>();
     private static System.Timers.Timer aTimer;
-    public bool doorWarping = false;
+    public bool doorWarping = false, teacherFight = false;
+    public int freq;
+    public CameraMovement cameraMovement;
 
     private void QuickSort(int[] arr, int start, int end)
     {
@@ -115,7 +118,7 @@ public class Deploy : MonoBehaviour
 
     private void spawn()
     {
-        if (obstacleCnt % 30 == 0 && obstacleCnt != 0 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
+        if (obstacleCnt % 30 == 0 && obstacleCnt != 1 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
         {
             spawnTeacher();
             obstacleCnt++;
@@ -145,6 +148,7 @@ public class Deploy : MonoBehaviour
 
     private void spawnTeacher()
     {
+        teacherFight = true;
         GameObject teacher = Instantiate(teachers[teacherCnt % 3]) as GameObject;
         teacher.transform.position = new Vector2(10, 0);
         teacherCnt++;
@@ -152,6 +156,9 @@ public class Deploy : MonoBehaviour
 
     private void spawnNotebook()
     {
+        if (teacherFight)
+            return;
+        
         int notebookSpawnChance = 40; // controls chance in percentage
         if (Random.Range(0f, 100f) >= (100 - notebookSpawnChance)) {
             GameObject notebook = Instantiate(notebookPrefab) as GameObject;
@@ -161,7 +168,11 @@ public class Deploy : MonoBehaviour
 
     private void spawnDoor()
     {
-        int doorSpawnChance = 30; // controls chance in percentage
+        Debug.Log(Time.time);
+        if (teacherFight)
+            return;
+        
+        int doorSpawnChance = 100; // controls chance in percentage
         if (Random.Range(0f, 100f) >= (100 - doorSpawnChance)) {
             GameObject door = Instantiate(doorPrefab) as GameObject;
             door.transform.position = new Vector2(10, Random.Range(-3f, 3f));
@@ -170,6 +181,9 @@ public class Deploy : MonoBehaviour
 
     private void spawnMask()
     {
+        if (teacherFight)
+            return;
+        
         int maskSpawnChance = 20; // controls chance in percentage
         if (Random.Range(0f, 100f) >= (100 - maskSpawnChance)) {
             GameObject mask = Instantiate(maskPrefab) as GameObject;
@@ -179,7 +193,10 @@ public class Deploy : MonoBehaviour
 
     private void spawnCoffee()
     {
-        int coffeeSpawnChance = 20; // controls chance in percentage
+        if (teacherFight)
+            return;
+        
+        int coffeeSpawnChance = 100; // controls chance in percentage
         if (player.coffeeBuff) coffeeSpawnChance = 0;
         if (Random.Range(0f, 100f) >= (100 - coffeeSpawnChance)) {
             GameObject coffee = Instantiate(coffeePrefab) as GameObject;
@@ -430,6 +447,19 @@ public class Deploy : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        if (cameraMovement.speed > 13 && cameraMovement.speed < 13.001)
+        {
+            adjustSpawnRate(4.5f);
+        }
+        else if (cameraMovement.speed > 10 && cameraMovement.speed < 10.001)
+        {
+            Debug.Log(cameraMovement.speed);
+            adjustSpawnRate(6.0f);
+        }
+    }
+
     public void deactivate()
     {
         CancelInvoke("spawnTrashCans");
@@ -446,14 +476,20 @@ public class Deploy : MonoBehaviour
         InvokeRepeating("spawnNotebook", 5.0f, 30.0f);
         InvokeRepeating("spawnCoffee", 5.0f, 10.0f);
         InvokeRepeating("spawnMask", 5.0f, 10.0f);
-        InvokeRepeating("spawnDoor", 5.0f, 30.0f);
+        InvokeRepeating("spawnDoor", 30.0f, 30.0f);
         doorWarping = false;
+    }
+
+    public void adjustSpawnRate(float time)
+    {
+        CancelInvoke("spawnTrashCans");
+        InvokeRepeating("spawnTrashCans", 2.0f, time);
     }
 
     IEnumerator wave() 
     {
         while(true) {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(-0.125f*cameraMovement.speed + 2.875f);
             while(doorWarping)
                 yield return new WaitForSeconds(0.2f);
             if (!player.alive) break;

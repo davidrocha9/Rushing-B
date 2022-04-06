@@ -22,7 +22,7 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {    
-        if (gameStarted.activeInHierarchy)
+        if (gameStarted.activeInHierarchy && speed < 15 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
             speed += Time.deltaTime * 0.05f;
 
         if (player.alive)

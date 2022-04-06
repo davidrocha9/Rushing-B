@@ -70,7 +70,7 @@ public class TrashCan : MonoBehaviour
             if (Time.time - spawnTime > 1.0f && !secondPhase && !warning.GetComponent<SpriteRenderer>().sprite.name.Contains("warning2"))
             {   
                 secondPhase = true;
-                audioManager.playFX(warningMusic, 0.2f);
+                audioManager.playFX(warningMusic);
                 float y = warning.transform.position.y;
                 Destroy(warning);
                 warning = Instantiate(warningPrefab2) as GameObject;
@@ -88,7 +88,7 @@ public class TrashCan : MonoBehaviour
         {
             if (warning != null)
             {
-                audioManager.playFX(deployMusic, 0.2f);
+                audioManager.playFX(deployMusic);
                 transform.position = new Vector2(10, warning.transform.position.y);
                 Destroy(warning);
             }

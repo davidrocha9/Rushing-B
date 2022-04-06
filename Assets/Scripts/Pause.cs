@@ -11,7 +11,7 @@ public class Pause : MonoBehaviour
     public AudioSource soundFXManager;
     public AudioSource playerSoundManager;
     public AudioSource aiSoundManager;
-    public GameObject gameStarted;
+    public GameObject gameStarted, gameEnded;
     Animator animator;
     
     // Start is called before the first frame update
@@ -23,7 +23,7 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameStarted.activeInHierarchy)
+        if (!gameStarted.activeInHierarchy || gameEnded.activeInHierarchy)
             return;
         
         if (Input.GetKeyDown(KeyCode.Escape))

@@ -69,7 +69,7 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         //shooting logic
-        if (overheated && !player.coffeeBuff)
+        if (overheated)
             return;
         
         if (player.coffeeBuff) {
@@ -79,8 +79,8 @@ public class Weapon : MonoBehaviour
         }
         else {
             Instantiate(bulletPrefab, new Vector3((float)(firePoint.position.x + 0.4), firePoint.position.y, firePoint.position.z), firePoint.rotation);
-            slider.value += Time.deltaTime * 15;
         }
-        audioManager.playFX(bulletMusic, 0.02f);
+        slider.value += Time.deltaTime * 15;
+        audioManager.playFX(bulletMusic);
     }
 }

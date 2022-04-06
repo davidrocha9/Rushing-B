@@ -16,8 +16,7 @@ public class SoundFXManager : MonoBehaviour
     {
     }
 
-    public void playFX(AudioClip music, float volume) {
-        fxMusic.volume = volume;
+    public void playFX(AudioClip music) {
         fxMusic.PlayOneShot(music);
     }
 }

@@ -14,6 +14,8 @@ public class ScoreController : MonoBehaviour
     int updateVal;
     CameraMovement cameraMovement;
     public float speed;
+    public Deploy spawner;
+    public int coffeeBoughtCnt = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -63,8 +65,9 @@ public class ScoreController : MonoBehaviour
 
     public void buyCoffee()
     {
-        coinsCnt = Mathf.Round(0.50f * coinsCnt);
+        coinsCnt = System.Int32.Parse(coins.text) - (100 + 100 * coffeeBoughtCnt);
         coins.text = coinsCnt.ToString().PadLeft(3, '0');
+        coffeeBoughtCnt++;
     }
 
     public void doorWarp()

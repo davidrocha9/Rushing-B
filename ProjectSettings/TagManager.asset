@@ -25,6 +25,7 @@ TagManager:
   - Warning
   - PauseMenu
   - Door
+  - Spawner
   layers:
   - Default
   - TransparentFX
@@ -33,9 +34,9 @@ TagManager:
   - Water
   - UI
   - Teacher
-  - 
-  - 
-  - 
+  - GameOver
+  - Bullet
+  - DeadTeacher
   - 
   - 
   - 

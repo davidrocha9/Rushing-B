@@ -47,6 +47,6 @@ public class AIWeapon : MonoBehaviour
     {
         //shooting logic
         Instantiate(bulletPrefab, new Vector3(transform.position.x - 0.925f, transform.position.y + 0.4f, transform.position.z), transform.rotation);
-        audioManager.playFX(bulletMusic, 0.02f);
+        audioManager.playFX(bulletMusic);
     }
 }
