@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerSoundManager : MonoBehaviour
 {
     public AudioSource playerFX;
-    public GameObject player;
+    public Player player;
     public AudioClip jetpack;
     Animator animator;
     [SerializeField] Slider sfxSlider;
@@ -20,8 +20,11 @@ public class PlayerSoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!player.alive)
+            return;
+        
         playerFX.volume = sfxSlider.value;
-        if (player.transform.position.y < -3.6)
+        if (player.gameObject.transform.position.y < -3.6)
         {
             
         }
