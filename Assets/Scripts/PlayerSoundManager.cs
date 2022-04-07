@@ -22,7 +22,6 @@ public class PlayerSoundManager : MonoBehaviour
     {
         if (!player.alive)
         {
-            Debug.Log("goods");
             playerFX.Pause();
             return;
         }

@@ -22,16 +22,18 @@ public class SaveScoreManager : MonoBehaviour
     public void AddScore(SaveScore score)
     {
         sd.scores.Add(score);
+        SaveScore();
     }
 
     private void OnDestroy()
     {
-        SaveScore();
+        //SaveScore();
     }
 
     public void SaveScore()
     {
         var json = JsonUtility.ToJson(sd);
+        Debug.Log(json);
         PlayerPrefs.SetString("scores", json);
     }
 }
