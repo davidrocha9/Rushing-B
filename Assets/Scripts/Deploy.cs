@@ -160,7 +160,7 @@ public class Deploy : MonoBehaviour
     private void spawnNotebook()
     {
         if (teacherFight || collectibleSpawned) return;
-        else if (Random.Range(0f, 100f) <= 15) {
+        else if (Random.Range(0f, 100f) <= 20) {
             collectibleSpawned = true;
             GameObject notebook = Instantiate(notebookPrefab) as GameObject;
             notebook.transform.position = new Vector2(10, 0);
@@ -170,7 +170,7 @@ public class Deploy : MonoBehaviour
     private void spawnDoor()
     {
         if (teacherFight || collectibleSpawned) return;
-        else if (Random.Range(0f, 100f) <= 25) {
+        else if (Random.Range(0f, 100f) <= 30) {
             collectibleSpawned = true;
             GameObject door = Instantiate(doorPrefab) as GameObject;
             door.transform.position = new Vector2(10, Random.Range(-3f, 3f));
@@ -180,7 +180,7 @@ public class Deploy : MonoBehaviour
     private void spawnMask()
     {
         if (teacherFight || collectibleSpawned || player.shield) return;
-        else if (Random.Range(0f, 100f) <= 75) {
+        else if (Random.Range(0f, 100f) <= 80) {
             collectibleSpawned = true;
             GameObject mask = Instantiate(maskPrefab) as GameObject;
             mask.transform.position = new Vector2(10, Random.Range(-1.5f, 3.5f));
@@ -470,10 +470,11 @@ public class Deploy : MonoBehaviour
     public void reactivate()
     {
         InvokeRepeating("spawnTrashCans", 2.0f, 7.0f);
-        InvokeRepeating("spawnNotebook", 5.0f, 30.0f);
-        InvokeRepeating("spawnCoffee", 5.0f, 10.0f);
-        InvokeRepeating("spawnMask", 5.0f, 10.0f);
-        InvokeRepeating("spawnDoor", 30.0f, 30.0f);
+        InvokeRepeating("resetSpawns", 2.0f, 7.0f);
+        InvokeRepeating("spawnMask", 2.0f, 7.0f);
+        InvokeRepeating("spawnCoffee", 2.0f, 7.0f);
+        InvokeRepeating("spawnDoor", 2.0f, 7.0f);
+        InvokeRepeating("spawnNotebook", 2.0f, 7.0f);
         doorWarping = false;
     }
 
