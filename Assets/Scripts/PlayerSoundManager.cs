@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSoundManager : MonoBehaviour
 {
     public AudioSource playerFX;
     public GameObject player;
-    public AudioClip footsteps, jetpack;
+    public AudioClip jetpack;
     Animator animator;
+    [SerializeField] Slider sfxSlider;
     
     // Start is called before the first frame update
     void Start()
@@ -18,13 +20,10 @@ public class PlayerSoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerFX.volume = sfxSlider.value;
         if (player.transform.position.y < -3.6)
         {
-            if (playerFX.clip != footsteps)
-            {
-                playerFX.clip = footsteps;
-                playerFX.Play();
-            }
+            
         }
         else
         {
