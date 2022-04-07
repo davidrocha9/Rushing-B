@@ -60,7 +60,7 @@ public class TrashCan : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (pauseMenu.isPaused())
             return;
