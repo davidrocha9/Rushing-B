@@ -21,7 +21,11 @@ public class PlayerSoundManager : MonoBehaviour
     void Update()
     {
         if (!player.alive)
+        {
+            Debug.Log("goods");
+            playerFX.Pause();
             return;
+        }
         
         playerFX.volume = sfxSlider.value;
         if (player.gameObject.transform.position.y < -3.6)
