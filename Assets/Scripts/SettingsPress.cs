@@ -19,7 +19,7 @@ public class SettingsPress : MonoBehaviour
     {
         if (maincamera.transform.position.y == 10.1f)
         {
-            if (Input.anyKey)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 parentAnimator.Play("CloseSettings");
             }
