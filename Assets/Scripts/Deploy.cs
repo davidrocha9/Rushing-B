@@ -121,7 +121,7 @@ public class Deploy : MonoBehaviour
 
     private void spawn()
     {
-        if (obstacleCnt % 30 == 0 && obstacleCnt != 0 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
+        if (obstacleCnt % 30 == 0 && obstacleCnt != 1 && GameObject.FindGameObjectsWithTag("Teacher").Length == 0)
         {
             spawnTeacher();
             obstacleCnt++;
