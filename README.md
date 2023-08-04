@@ -2,6 +2,8 @@
 
 Endless Scroller built with Unity (2D). A student races across FEUP's B Hall trying to get to class on time. On their way, they will face many different kinds of enemies and power-ups which will aid them in their journey.
 
+The game was published and can be played in [itch.io](https://miguelams.itch.io/rushing-b)!
+
 ## Overview
 
 Player has a basic weapon and a jetpack.
